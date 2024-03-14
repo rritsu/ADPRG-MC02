@@ -36,6 +36,7 @@ namespace models {
 
         public:
             bool getEnabled();
+            void setEnabled(bool bEnabled);
             std::string getName();
             sf::Sprite* getSprite();
             std::vector<Component*> getComponents(ComponentType EType);

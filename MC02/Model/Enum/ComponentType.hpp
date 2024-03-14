@@ -4,5 +4,6 @@ enum class ComponentType : int {
     NONE = -1,
     SCRIPT,
     RENDERER,
-    INPUT
+    INPUT,
+    PHYSICS
 };

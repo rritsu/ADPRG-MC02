@@ -62,12 +62,22 @@ void GameObject::detachComponent(Component* pComponent) {
 }
 
 Component* GameObject::findComponentByName(std::string strName) {
-    return 0;
+    Component* pGetComponent;
+    for(Component* pComponent : this->vecComponents ) {
+        if(pComponent->getName() == strName)
+            pGetComponent = pComponent;
+    }
+    return pGetComponent;
 }
 
 bool GameObject::getEnabled() {
     return this->bEnabled;
 }
+
+void GameObject::setEnabled(bool bEnabled) {
+    this->bEnabled = bEnabled;
+}
+
 
 std::string GameObject::getName() {
     return this->strName;
