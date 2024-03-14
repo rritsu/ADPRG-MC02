@@ -8,7 +8,9 @@ Collider::Collider(std::string strName) : Component(strName, ComponentType::PHYS
     this->bCleanup = false;
 }
 
-void Collider::peform() {
+
+//miss hasn't implemented the methods below yet
+void Collider::perform() {
 
 }
 

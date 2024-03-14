@@ -19,7 +19,7 @@ namespace components {
             Collider(std::string strName);
 
         public:
-            void peform();
+            void perform();
             bool isColliding(Collider* pCollider);
             void onCollisionEnter(GameObject* pGameObject);
             void onCollisionExit(GameObject* pGameObject);
