@@ -1,13 +1,13 @@
 #pragma once
 
-#include <iostream>
 #include <SFML/Graphics.hpp>
 
 #include "../GameObject.hpp"
 #include "../Enum/ComponentType.hpp"
 
+
 namespace models {
-    class GameObject;
+    class GameObject; 
 }
 
 namespace components {
@@ -19,11 +19,11 @@ namespace components {
             ComponentType EType;
             std::string strName;
             sf::Time tDeltaTime;
-        
+
         public:
-            Component(std::string strName, ComponentType);
-            virtual ~Component();
-        
+            Component(std::string strName, ComponentType EType);
+            virtual ~Component(); 
+             
         public:
             void attachOwner(GameObject* pOwner);
             void detachOwner();
@@ -36,5 +36,9 @@ namespace components {
             ComponentType getType();
             std::string getName();
             void setDeltaTime(sf::Time tDeltaTime);
+
+
     };
+
+
 }

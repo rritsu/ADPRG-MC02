@@ -1,5 +1,5 @@
 #pragma once
 
-enum class PoolTag: int {
-    NONE = -1
+enum class PoolTag : int {
+    NONE = -1,
 };

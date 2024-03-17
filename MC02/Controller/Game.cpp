@@ -2,25 +2,26 @@
 
 using namespace controllers;
 
-Game::Game() : CWindow(sf::VideoMode(1280, 720), "Hello"){
-    //register scenes below
-  //  Scene* pShipScene = new Scene()
+
+Game::Game() : CWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Hello") {    
+  //  SceneManager::getInstance()->registerScene(new MainMenuScene());
     SceneManager::getInstance()->registerScene(new ShipScene());
     SceneManager::getInstance()->loadScene(SceneTag::SHIP_SCENE);
- //   SceneManager::
-   std::cout << "game" << std::endl;
+    
 }
 
+
 void Game::run() {
+    //sf::Time tDeltaTime;
     sf::Clock CClock = sf::Clock();
-    sf::Time tTimePerFrame = sf::seconds(1.0f / 60.0f);
+    sf::Time tTimePerFrame = sf::seconds(1.0f / FRAME_RATE_LIMIT);
     sf::Time tTimeSinceLastUpdate = sf::Time::Zero;
 
     while (this->CWindow.isOpen()) {
         this->processEvents();
         tTimeSinceLastUpdate += CClock.restart();
 
-        while(tTimeSinceLastUpdate > tTimePerFrame){
+        while(tTimeSinceLastUpdate > tTimePerFrame){ 
             tTimeSinceLastUpdate -= tTimePerFrame;
             this->update(tTimePerFrame); 
         }
@@ -29,6 +30,7 @@ void Game::run() {
         this->render();
     }
 }
+
 
 void Game::processEvents() {
     sf::Event CEvent;
@@ -45,12 +47,15 @@ void Game::processEvents() {
     }
 }
 
+
 void Game::update(sf::Time tDeltaTime) {
+
     GameObjectManager::getInstance()->update(tDeltaTime);    
 }
 
+//RENDER
 void Game::render() {
     this->CWindow.clear();
-    GameObjectManager::getInstance()->draw(&this->CWindow); 
+    GameObjectManager::getInstance()->draw(&this->CWindow);
     this->CWindow.display();
 }

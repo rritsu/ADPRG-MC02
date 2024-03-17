@@ -1,4 +1,5 @@
 #include "Component.hpp"
+
 using namespace components;
 
 Component::Component(std::string strName, ComponentType EType) {
@@ -16,7 +17,7 @@ void Component::attachOwner(GameObject* pOwner) {
     this->pOwner = pOwner;
 }
 
-void Component::detachOwner(){
+void Component::detachOwner() {
     delete this;
 }
 
@@ -35,3 +36,5 @@ std::string Component::getName() {
 void Component::setDeltaTime(sf::Time tDeltaTime) {
     this->tDeltaTime = tDeltaTime;
 }
+
+        

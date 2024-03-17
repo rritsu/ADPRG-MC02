@@ -1,12 +1,12 @@
 #pragma once
 
-#include <string>
-#include <SFML/Graphics.hpp>
 
 #include "AnimatedTexture.hpp"
 #include "Component/Component.hpp"
 #include "Component/GeneralInput.hpp"
 #include "Component/Renderer/Renderer.hpp"
+
+#include "../Config/Settings.hpp"
 
 namespace models {
     using namespace components;
@@ -16,24 +16,24 @@ namespace models {
             bool bEnabled;
             std::string strName;
             sf::Sprite* pSprite;
-            AnimatedTexture* pTexture;
-            std::vector<Component*> vecComponents;
-           // float fSpeed;
-        
-        public:
-            GameObject(std::string strName, AnimatedTexture* pTexture);
+            AnimatedTexture* pTexture;;
+            std::vector<Component*> vecComponents; 
 
         public:
-            virtual void initialize() = 0;
-            virtual void processEvents(sf::Event CEvent);
-            virtual void update(sf::Time tDeltatime);
+            GameObject(std::string strName, AnimatedTexture* pTexture);
+        
+        public:
+            virtual void initialize() = 0; 
+            virtual void processEvents(sf::Event CEvent); 
+            virtual void update(sf::Time tDeltaTime);
             virtual void draw(sf::RenderWindow* pWindow);
 
         public:
+            void centerOrigin();
             void attachComponent(Component* pComponent);
             void detachComponent(Component* pComponent);
             Component* findComponentByName(std::string strName);
-            void centerOrigin();
+            
 
         public:
             bool getEnabled();
@@ -41,11 +41,9 @@ namespace models {
             std::string getName();
             sf::Sprite* getSprite();
             std::vector<Component*> getComponents(ComponentType EType);
+            float getHalfWidth();
+            float getHalfHeight();
 
             void setFrame(int nFrame);
-
-            //void setTexture(sf::Texture CTexture);
-            //float getSpeed();
-            
     };
 }

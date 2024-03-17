@@ -1,7 +1,8 @@
-#pragma once 
+#pragma once
 
 #include "../Component.hpp"
 #include "../../GameObject.hpp"
+#include "../../Enum/ComponentType.hpp"
 #include "../../Interface/CollisionListener.hpp"
 
 namespace components {
@@ -12,18 +13,20 @@ namespace components {
         private:
             CollisionListener* pListener;
             sf::FloatRect COffset;
-            std::vector<Collider> vecCollided;
-            bool bCleanup;
-        
+            std::vector<Collider*> vecCollided;
+            bool bCleanUp;
+
         public:
             Collider(std::string strName);
-
+        
         public:
             void perform();
             bool isColliding(Collider* pCollider);
-            void onCollisionEnter(GameObject* pGameObject);
+            void onColllisionEnter(GameObject* pGameObject);
             void onCollisionExit(GameObject* pGameObject);
             void assignListener(CollisionListener* pListener);
-            sf::FloatRect getGlobalGrounds();
+            sf::FloatRect getGlobalBounds();
+
+            
     };
 }

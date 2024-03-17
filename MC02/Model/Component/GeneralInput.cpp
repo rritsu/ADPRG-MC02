@@ -2,7 +2,8 @@
 
 using namespace components;
 
-GeneralInput::GeneralInput(std::string strName) : Component(strName, ComponentType::INPUT) {}
+
+GeneralInput::GeneralInput(std::string strName) : Component(strName, ComponentType::INPUT){}
 
 void GeneralInput::assignEvent(sf::Event CEvent) {
    this->CEvent = CEvent;

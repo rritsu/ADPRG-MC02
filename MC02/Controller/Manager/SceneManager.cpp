@@ -1,5 +1,7 @@
 #include "SceneManager.hpp"
+
 using namespace managers;
+
 
 void SceneManager::registerScene(Scene* pScene) {
     this->mapScenes[pScene->getTag()] = pScene;
@@ -21,8 +23,10 @@ void SceneManager::checkLoadScene() {
     if(this->bLoading) {
         this->unloadScene();
         this->pActiveScene = this->mapScenes[this->ESceneToLoad];
+
         this->pActiveScene->onLoadResources();
-        this->pActiveScene->onLoadObjects();  //prev error, duplicated line 24
+        this->pActiveScene->onLoadObjects();
+
         this->bLoading = false;
     }
 }
@@ -34,11 +38,9 @@ bool SceneManager::getLoaded(SceneTag ETag) {
 
 
 SceneManager* SceneManager::P_SHARED_INSTANCE = NULL;
-
 SceneManager::SceneManager() {
     this->pActiveScene = NULL;
 }
-
 SceneManager::SceneManager(const SceneManager&) {}
 
 SceneManager* SceneManager::getInstance() {
@@ -47,3 +49,4 @@ SceneManager* SceneManager::getInstance() {
 
     return P_SHARED_INSTANCE;
 }
+

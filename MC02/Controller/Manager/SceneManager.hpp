@@ -1,5 +1,6 @@
 #pragma once
 
+#include <unordered_map>
 #include "../../Model/Enum/SceneTag.hpp"
 #include "../../Model/Scene.hpp"
 
@@ -22,16 +23,14 @@ namespace managers {
         public:
             bool getLoaded(SceneTag ETag);
 
-    
-        
         private:
             static SceneManager* P_SHARED_INSTANCE;
-        
+
         private:
             SceneManager();
             SceneManager(const SceneManager&);
             SceneManager& operator = (const SceneManager&);
-        
+
         public:
             static SceneManager* getInstance();
 

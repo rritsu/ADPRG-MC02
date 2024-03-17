@@ -2,13 +2,13 @@
 
 using namespace models;
 
-GameObject::GameObject(std::string strName, AnimatedTexture* pTexture) { 
-    this->bEnabled = true;
+GameObject::GameObject(std::string strName, AnimatedTexture* pTexture) {
+    this->bEnabled = true; 
     this->strName = strName;
     this->pSprite = new sf::Sprite();
     this->pTexture = pTexture;
     this->vecComponents = {};
-   // this->setFrame(0);
+    this->setFrame(0); 
 }
 
 void GameObject::processEvents(sf::Event CEvent) {
@@ -19,25 +19,32 @@ void GameObject::processEvents(sf::Event CEvent) {
     for(Component* pComponent : vecInputComponent) {
         pGeneralInput = (GeneralInput*)pComponent;
         pGeneralInput->assignEvent(CEvent);
-        pGeneralInput->perform();    
+        pGeneralInput->perform();
     }
 }
 
-void GameObject::update(sf::Time tDeltaTime){
+
+void GameObject::update(sf::Time tDeltatime){
+
     std::vector<Component*> vecScriptComponents = this->getComponents(ComponentType::SCRIPT);
+
     for(Component* pComponent : vecScriptComponents) {
         pComponent->perform();
-        pComponent->setDeltaTime(tDeltaTime);
+        pComponent->setDeltaTime(tDeltatime);
     }
 }
 
+
+//RENDER
 void GameObject::draw(sf::RenderWindow* pWindow) {
-    std::vector<Component*> vecRenderComponents = this->getComponents(ComponentType::RENDERER);
-    for(Component* pComponent : vecRenderComponents) {
+    std::vector<Component*> vecRendererComponents = this->getComponents(ComponentType::RENDERER);
+    
+    for(Component* pComponent : vecRendererComponents) {
         Renderer* pRenderer = (Renderer*)pComponent;
         pRenderer->assignTargetWindow(pWindow);
         pRenderer->perform();
     }
+    //pWindow->draw(*this->pSprite);
 }
 
 void GameObject::centerOrigin() {
@@ -53,8 +60,9 @@ void GameObject::attachComponent(Component* pComponent) {
     pComponent->attachOwner(this);
 }
 
-//might be wrong code
-void GameObject::detachComponent(Component* pComponent) {
+    //might be wrong code
+void  GameObject::detachComponent(Component* pComponent) {
+  //  int nIndex = -1;
     int nIndex = 0;
     for(Component* pTemp : vecComponents){
         if(pTemp != pComponent)
@@ -69,6 +77,7 @@ void GameObject::detachComponent(Component* pComponent) {
     }
 }
 
+
 Component* GameObject::findComponentByName(std::string strName) {
     Component* pGetComponent;
     for(Component* pComponent : this->vecComponents ) {
@@ -78,6 +87,29 @@ Component* GameObject::findComponentByName(std::string strName) {
     return pGetComponent;
 }
 
+std::vector<Component*> GameObject::getComponents(ComponentType EType){
+    std::vector<Component*> vecGetComponents = {};
+    for(Component* pComponent : vecComponents) {
+        if(pComponent->getType() == EType){
+            vecGetComponents.push_back(pComponent);
+        }
+    }
+    return vecGetComponents;
+}
+
+float GameObject::getHalfWidth() {
+    if(this->pTexture != NULL) 
+        return this->pSprite->getTexture()->getSize().x / 2.0f;
+    return 0.0f;
+}
+
+float GameObject::getHalfHeight() {
+    if(this->pTexture != NULL) 
+        return this->pSprite->getTexture()->getSize().y / 2.0f;
+    return 0.0f;
+}
+
+
 bool GameObject::getEnabled() {
     return this->bEnabled;
 }
@@ -86,23 +118,12 @@ void GameObject::setEnabled(bool bEnabled) {
     this->bEnabled = bEnabled;
 }
 
-
 std::string GameObject::getName() {
     return this->strName;
 }
 
 sf::Sprite* GameObject::getSprite() {
     return this->pSprite;
-}
-
-std::vector<Component*> GameObject::getComponents(ComponentType EType) {
-    std::vector<Component*> vecGetComponents = {};
-    for(Component* pComponent: this->vecComponents){
-        if(pComponent->getType() == EType){
-            vecGetComponents.push_back(pComponent);
-        }
-    }
-    return vecGetComponents;
 }
 
 void GameObject::setFrame(int nFrame) {

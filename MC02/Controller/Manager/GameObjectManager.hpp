@@ -1,10 +1,9 @@
 #pragma once
 
-#include <unordered_map>
-#include <vector>
-#include <SFML/Graphics.hpp>
+#include "unordered_map"
 
 #include "../../Model/GameObject.hpp"
+
 
 namespace managers {
     using namespace models;
@@ -18,21 +17,26 @@ namespace managers {
             void processEvents(sf::Event CEvent);
             void update(sf::Time tDeltaTime);
             void draw(sf::RenderWindow* pWindow);
+
             void addObject(GameObject* pGameObject);
-            GameObject* findGameObjectByName(std::string strName);
+            GameObject* findObjectByName(std::string strName);
             void deleteObject(GameObject* pGameObject);
             void deleteObjectByName(std::string strName);
             void deleteAllObjects();
 
+        public:
+            int getActiveObjectSize();
+
         private:
             static GameObjectManager* P_SHARED_INSTANCE;
-
+        
         private:
             GameObjectManager();
             GameObjectManager(const GameObjectManager&);
             GameObjectManager& operator = (const GameObjectManager&);
-
+        
         public:
-            static GameObjectManager* getInstance();  
+            static GameObjectManager* getInstance();
+        
     };
 }

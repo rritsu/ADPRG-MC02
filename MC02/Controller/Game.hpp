@@ -1,24 +1,31 @@
 #pragma once
 
-#include "../Model/GameObject.hpp"
+#include <SFML/Graphics.hpp>
+
+
+#include "../Model/AnimatedTexture.hpp"
 #include "Manager/TextureManager.hpp"
 #include "Manager/GameObjectManager.hpp"
 #include "Manager/SceneManager.hpp"
 
+#include "../Model/Scene/MainMenuScene.hpp"
 #include "../Model/Scene/ShipScene.hpp"
+
+#include "../Config/Settings.hpp"
 
 namespace controllers {
     using namespace models;
     using namespace managers;
+    using namespace entities;
     using namespace scenes;
 
     class Game {
-        private:
+        private: 
             sf::RenderWindow CWindow;
 
         public:
             Game();
-        
+
         public:
             void run();
 
@@ -28,3 +35,10 @@ namespace controllers {
             void render();
     };
 }
+
+
+/*
+edit player input (remove space)
+
+
+*/

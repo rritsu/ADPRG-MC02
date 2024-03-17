@@ -1,6 +1,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <vector>
+#include <iostream>
 
 namespace models {
     class AnimatedTexture {
@@ -16,6 +18,6 @@ namespace models {
 
         public:
             sf::Texture* getFrame();
-            void setCurrentFrame(int nCurrentFrame); 
+            void setCurrentFrame(int nCurrentFrame);
     };
 }
