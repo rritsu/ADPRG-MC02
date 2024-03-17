@@ -22,7 +22,7 @@ void SceneManager::checkLoadScene() {
         this->unloadScene();
         this->pActiveScene = this->mapScenes[this->ESceneToLoad];
         this->pActiveScene->onLoadResources();
-        this->pActiveScene->onLoadResources();
+        this->pActiveScene->onLoadObjects();  //prev error, duplicated line 24
         this->bLoading = false;
     }
 }

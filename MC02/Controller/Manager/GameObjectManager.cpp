@@ -26,6 +26,7 @@ void GameObjectManager::addObject(GameObject* pGameObject) {
     this->mapGameObjects[pGameObject->getName()] = pGameObject;
     this->vecGameObjects.push_back(pGameObject);
     pGameObject->initialize();
+    std::cout << "addObject method in GameObjectManager" << std::endl;
 }
 
 GameObject* GameObjectManager::findGameObjectByName(std::string strName) {

@@ -4,6 +4,11 @@ using namespace controllers;
 
 Game::Game() : CWindow(sf::VideoMode(1280, 720), "Hello"){
     //register scenes below
+  //  Scene* pShipScene = new Scene()
+    SceneManager::getInstance()->registerScene(new ShipScene());
+    SceneManager::getInstance()->loadScene(SceneTag::SHIP_SCENE);
+ //   SceneManager::
+   std::cout << "game" << std::endl;
 }
 
 void Game::run() {
@@ -12,11 +17,11 @@ void Game::run() {
     sf::Time tTimeSinceLastUpdate = sf::Time::Zero;
 
     while (this->CWindow.isOpen()) {
+        this->processEvents();
         tTimeSinceLastUpdate += CClock.restart();
 
         while(tTimeSinceLastUpdate > tTimePerFrame){
             tTimeSinceLastUpdate -= tTimePerFrame;
-            this->processEvents();
             this->update(tTimePerFrame); 
         }
 

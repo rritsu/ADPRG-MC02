@@ -33,6 +33,7 @@ namespace models {
             void attachComponent(Component* pComponent);
             void detachComponent(Component* pComponent);
             Component* findComponentByName(std::string strName);
+            void centerOrigin();
 
         public:
             bool getEnabled();

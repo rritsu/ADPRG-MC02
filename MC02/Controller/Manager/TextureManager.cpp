@@ -3,7 +3,13 @@ using namespace managers;
 
 void TextureManager::loadMainMenu() {}
 
-void TextureManager::loadShip() {}
+void TextureManager::loadShip() {
+    sf::Texture* pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Player/idle.png");
+    this->mapTexture[AssetType::PLAYER].push_back(pTexture);
+    this->vecAssetTypes.push_back(AssetType::PLAYER);
+    std::cout << "hi load ship" << std::endl;
+}
 
 void TextureManager::unloadAll() {
     for(AssetType EType : this->vecAssetTypes) {
@@ -15,6 +21,7 @@ void TextureManager::unloadAll() {
 }
 
 std::vector<sf::Texture*> TextureManager::getTexture(AssetType EType) {
+     std::cout << "get Texture" << std::endl;
     return this->mapTexture[EType];
 }
 

@@ -40,6 +40,14 @@ void GameObject::draw(sf::RenderWindow* pWindow) {
     }
 }
 
+void GameObject::centerOrigin() {
+    if(this->pTexture != NULL) {
+        int nWidth = this->pSprite->getTexture()->getSize().x;
+        int nHeight = this->pSprite->getTexture()->getSize().y;
+        this->pSprite->setOrigin(nWidth / 2.0f, nHeight / 2.0f);
+    }
+}
+
 void GameObject::attachComponent(Component* pComponent) {
     this->vecComponents.push_back(pComponent);
     pComponent->attachOwner(this);

@@ -22,7 +22,12 @@
 #include "Model/Component/Renderer/Renderer.cpp"
 #include "Model/Component/Physics/Collider.cpp"
 
+#include "Model/Entity/Player.cpp"
+#include "Model/Component/Input/PlayerInput.cpp"
+#include "Model/Component/Script/PlayerScript.cpp"
+
 #include "Model/Scene.cpp"
+#include "Model/Scene/ShipScene.cpp"
 
 int main(){
     Game CGame;

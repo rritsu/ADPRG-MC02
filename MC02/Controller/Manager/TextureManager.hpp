@@ -1,7 +1,8 @@
 #pragma once
 
+#include <iostream>
 #include <unordered_map>
-#include "SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
 
 #include "../../Model/Enum/AssetType.hpp"
 
@@ -16,6 +17,9 @@ namespace managers {
             void loadShip();
             //void loadRoom();
             void unloadAll();
+
+     //   private:
+           // void loadPlayer();
 
         public:
             std::vector<sf::Texture*> getTexture(AssetType EType);
