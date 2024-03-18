@@ -10,7 +10,7 @@ void ShipScene::onLoadResources() {
 }
 
 void ShipScene::onLoadObjects() {
-    //this->createBackGround();
+    this->createBackGround();
     this->createPlayer();
   //  this->createObjectPools();
 }
@@ -22,6 +22,7 @@ void ShipScene::onUnloadResources() {
 void ShipScene::createBackGround() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::GAME_BACKGROUND));
     Background* pBackground = new Background("Background", pTexture);
+    pBackground->getSprite()->setPosition(100,0);
     this->registerObject(pBackground);
 }
 

@@ -12,17 +12,16 @@ void TextureManager::loadMainMenu() {
 }
 
 void TextureManager::loadShip() {
-    //background
-    /*
+    
     sf::Texture* pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Space Impact/game_background.png");
+    pTexture->loadFromFile("View/Image/Map/Ship.png");
     this->mapTexture[AssetType::GAME_BACKGROUND].push_back(pTexture);
     this->vecAssetTypes.push_back(AssetType::GAME_BACKGROUND);
-*/
+
 
 
     //player
-    sf::Texture* pTexture = new sf::Texture();
+    pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/Player/idle.png");
     this->mapTexture[AssetType::PLAYER].push_back(pTexture);
     this->vecAssetTypes.push_back(AssetType::PLAYER);
