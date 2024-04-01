@@ -39,6 +39,11 @@
 #include "Model/Entity/Tile.cpp"
 #include "Model/Entity/Ship.cpp"
 
+#include "Model/Entity/Enemy/Enemy.cpp"
+#include "Model/Entity/Enemy/Bug.cpp"
+#include "Model/Entity/Enemy/Coilhead.cpp"
+#include "Model/Entity/Enemy/Flea.cpp"
+
 #include "Model/Pooling/PoolableObject.cpp"
 
 #include "Model/Scene/MainMenuScene.cpp"
