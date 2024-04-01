@@ -18,6 +18,7 @@ namespace models {
             sf::Sprite* pSprite;
             AnimatedTexture* pTexture;;
             std::vector<Component*> vecComponents; 
+            GameObject* pShade;
 
         public:
             GameObject(std::string strName, AnimatedTexture* pTexture);
@@ -33,6 +34,7 @@ namespace models {
             void attachComponent(Component* pComponent);
             void detachComponent(Component* pComponent);
             Component* findComponentByName(std::string strName);
+            void assignShade(GameObject* pShade);
             
 
         public:
@@ -43,7 +45,9 @@ namespace models {
             std::vector<Component*> getComponents(ComponentType EType);
             float getHalfWidth();
             float getHalfHeight();
-
+            sf::FloatRect getGlobalBounds();
+            GameObject* getShade();
+            void setShadeSetting(sf::Vector2f vecScale, sf::Color cColor);
             void setFrame(int nFrame);
     };
 }

@@ -1,12 +1,10 @@
 #pragma once
 
 #include "../Component.hpp"
-#include "../../GameObject.hpp"
 #include "../../Enum/ComponentType.hpp"
 #include "../../Interface/CollisionListener.hpp"
 
 namespace components {
-    using namespace models;
     using namespace interfaces;
 
     class Collider : public Component {
@@ -22,11 +20,19 @@ namespace components {
         public:
             void perform();
             bool isColliding(Collider* pCollider);
-            void onColllisionEnter(GameObject* pGameObject);
-            void onCollisionExit(GameObject* pGameObject);
-            void assignListener(CollisionListener* pListener);
-            sf::FloatRect getGlobalBounds();
+            bool hasCollided(Collider* pCollider);
+            void setCollided(Collider* pCollider, bool bCollided);
+            int findCollider(Collider* pCollider);
+            void cleanCollisions();
 
-            
+            void onCollisionEnter(Collider* pCollider);
+            void onCollisionExit(Collider* pCollider);
+            void assignListener(CollisionListener* pListener);
+
+        public:
+            void setOffset(sf::FloatRect COffset);
+            bool getCleanUp();
+            void setCleanUp(bool bCleanUp);       
+            sf::FloatRect getGlobalBounds();
     };
 }

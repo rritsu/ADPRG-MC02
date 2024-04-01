@@ -13,6 +13,8 @@
 //#include "Controller/Manager/SFXManager.cpp"
 #include "Controller/Manager/PhysicsManager.cpp"
 
+#include "Controller/Utility/Utility.cpp"
+
 #include "Controller/Pooling/GameObjectPool.cpp"
 #include "Controller/Manager/ObjectPoolManager.cpp"
 
@@ -21,10 +23,11 @@
 #include "Model/Component/Component.cpp"
 #include "Model/Component/GeneralInput.cpp"
 #include "Model/Component/Input/BackgroundInput.cpp"
-
+#include "Model/Component/Input/ShipInput.cpp"
 #include "Model/Component/Input/PlayerInput.cpp"
 #include "Model/Component/Renderer/Renderer.cpp"
 #include "Model/Component/Script/BackgroundAction.cpp"
+#include "Model/Component/Script/ShipScript.cpp"
 
 #include "Model/Component/Script/PlayerControls.cpp"
 #include "Model/Component/Physics/Collider.cpp"
@@ -32,18 +35,20 @@
 #include "Model/Entity/Background.cpp"
 #include "Model/Entity/Border.cpp"
 #include "Model/Entity/Player.cpp"
+#include "Model/Entity/ShipObject.cpp"
+#include "Model/Entity/Tile.cpp"
+#include "Model/Entity/Ship.cpp"
 
 #include "Model/Pooling/PoolableObject.cpp"
 
 #include "Model/Scene/MainMenuScene.cpp"
 #include "Model/Scene/ShipScene.cpp"
+#include "Model/Scene/AreaScene.cpp"
 
 #include "Model/AnimatedTexture.cpp"
+#include "Model/EmptyGameObject.cpp"
 #include "Model/GameObject.cpp"
 #include "Model/Scene.cpp"
-
-#include "Config/Settings.hpp"
-
 
 
 int main() {

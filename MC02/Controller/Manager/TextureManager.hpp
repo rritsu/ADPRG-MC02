@@ -10,15 +10,18 @@ namespace managers {
     class TextureManager {
         private: 
             std::unordered_map<AssetType, std::vector<sf::Texture*>> mapTexture;
-            std::vector<AssetType> vecAssetTypes; 
+            std::vector<AssetType> vecAssetTypes;
 
         public:
-           // void loadAll();
             void loadMainMenu();
             void loadShip();
+            void loadArea();
             std::vector<sf::Texture*> getTexture(AssetType EType);
             sf::Texture* getTextureAt(AssetType EType, int nFrame);
             void unloadAll();
+        
+        private:
+            void loadPlayer();
 
         private:
             static TextureManager* P_SHARED_INSTANCE;

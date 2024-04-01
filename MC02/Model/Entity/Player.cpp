@@ -7,9 +7,11 @@ Player::Player(std::string strName, AnimatedTexture* pTexture) : GameObject(strN
 }
 
 void Player::initialize() {
-    this->centerOrigin();
-    this->pSprite->setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
-   // this->pSprite->setColor(this->CNormalColor);
+    //this->centerOrigin();
+    //this->pSprite->setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+    //this->pSprite->setPosition(SCREEN_WIDTH/2, /);
+
+    this->setFrame(0);
 
     PlayerInput* pInput = new PlayerInput(this->strName + " Input");
     this->attachComponent(pInput);
@@ -24,6 +26,7 @@ void Player::initialize() {
     Collider* pCollider = new Collider(this->strName + " Collider");
     pCollider->assignListener(this);
     this->attachComponent(pCollider);
+    PhysicsManager::getInstance()->trackCollider(pCollider);
 }
 
 void Player::onCollisionEnter(GameObject* pGameObject) {}

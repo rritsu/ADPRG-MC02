@@ -1,11 +1,18 @@
 #pragma once
 
+#include "iostream"
+#include "../EmptyGameObject.hpp"
 #include "../Scene.hpp"
 #include "../../Controller/Manager/TextureManager.hpp"
-#include "../Entity/Background.hpp"
-#include "../Entity/Player.hpp"
 #include "../../Controller/Pooling/GameObjectPool.hpp"
 #include "../../Controller/Manager/ObjectPoolManager.hpp"
+#include "../Entity/Background.hpp"
+#include "../Entity/Player.hpp"
+#include "../Entity/ShipObject.hpp"
+#include "../Entity/Tile.hpp"
+#include "../Entity/Ship.hpp"
+
+
 
 namespace scenes {
     using namespace models;
@@ -24,8 +31,11 @@ namespace scenes {
            // void onUnloadObjects();
 
         private:
+            void createNullObjects();
             void createBackGround();
+          //  void createGrid();
             void createPlayer();
-            void createObjectPools();
+            void createShip();
+            void createShipObjects();
     };
 }

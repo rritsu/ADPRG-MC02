@@ -6,6 +6,7 @@
 #include "../Component/Script/PlayerControls.hpp"
 #include "../Component/Physics/Collider.hpp"
 #include "../Interface/CollisionListener.hpp"
+#include "../../Controller/Manager/PhysicsManager.hpp"
 
 namespace entities {
     using namespace models;

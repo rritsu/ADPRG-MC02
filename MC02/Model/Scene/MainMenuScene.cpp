@@ -8,7 +8,7 @@ void MainMenuScene::onLoadResources() {
 }
 
 void MainMenuScene::onLoadObjects() {
-   this->createBackground();
+  // this->createBackground();
 }
 
 void MainMenuScene::onUnloadResources() {

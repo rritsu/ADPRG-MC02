@@ -7,8 +7,8 @@ void Background::initialize() {
     BackgroundInput* pInput = new BackgroundInput(this->strName + " Input");
     this->attachComponent(pInput);
 
-    BackgroundAction* pAction = new BackgroundAction(this->strName + " Action");
-    this->attachComponent(pAction);
+    //BackgroundAction* pAction = new BackgroundAction(this->strName + " Action");
+    //this->attachComponent(pAction);
 
     Renderer* pRenderer = new Renderer(this->strName + " Renderer");
     pRenderer->assignDrawable(this->pSprite);

@@ -11,21 +11,61 @@ void TextureManager::loadMainMenu() {
 
 }
 
-void TextureManager::loadShip() {
-    
+void TextureManager::loadShip() { 
+  //  sf::Texture* pTexture = new sf::Texture();
+  //  pTexture->loadFromFile("View/Image/Map/Ship.png");
+  //  this->mapTexture[AssetType::SHIP_BACKGROUND].push_back(pTexture);
+  //  this->vecAssetTypes.push_back(AssetType::SHIP_BACKGROUND);
+
     sf::Texture* pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Map/Ship.png");
-    this->mapTexture[AssetType::GAME_BACKGROUND].push_back(pTexture);
-    this->vecAssetTypes.push_back(AssetType::GAME_BACKGROUND);
+    pTexture->loadFromFile("View/Image/Ship/ship-tile.png");
+    this->mapTexture[AssetType::SHIP_TILE].push_back(pTexture);
+    this->vecAssetTypes.push_back(AssetType::SHIP_TILE);
 
-
-
-    //player
     pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Player/idle.png");
+    pTexture->loadFromFile("View/Image/Ship/ship-bg.png");
+    this->mapTexture[AssetType::SHIP_BACKGROUND].push_back(pTexture);
+    this->vecAssetTypes.push_back(AssetType::SHIP_BACKGROUND);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Interact/laptop.png");
+    this->mapTexture[AssetType::LAPTOP].push_back(pTexture);
+    this->vecAssetTypes.push_back(AssetType::LAPTOP);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Ship/test1.png");
+    this->mapTexture[AssetType::PORTAL].push_back(pTexture);
+    this->vecAssetTypes.push_back(AssetType::PORTAL);
+    
+    this->loadPlayer();
+}
+
+void TextureManager::loadArea() {
+    sf::Texture* pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Map/area-tile.png");
+    this->mapTexture[AssetType::AREA_TILE].push_back(pTexture);
+    this->vecAssetTypes.push_back(AssetType::AREA_TILE);
+
+    this->loadPlayer();
+
+    //door grid
+   // pTexture = new sf::Texture();
+    //pTexture->loadFromFile("View/Image/Player/")
+}
+
+void TextureManager::loadPlayer() {
+    sf::Texture* pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Player/right.png");
     this->mapTexture[AssetType::PLAYER].push_back(pTexture);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Player/left.png");
+    this->mapTexture[AssetType::PLAYER].push_back(pTexture);
+
     this->vecAssetTypes.push_back(AssetType::PLAYER);
 }
+
+
 
 std::vector<sf::Texture*> TextureManager::getTexture(AssetType EType) {
     return this->mapTexture[EType];
@@ -42,6 +82,9 @@ void TextureManager::unloadAll() {
             delete this->mapTexture[EType][i];
         }
     }
+
+    this->vecAssetTypes.clear();
+    this->mapTexture.clear();
 }
 
 TextureManager* TextureManager::P_SHARED_INSTANCE = NULL;

@@ -3,6 +3,8 @@
 #include "GameObject.hpp"
 #include "Enum/SceneTag.hpp"
 #include "../Controller/Manager/GameObjectManager.hpp"
+#include "../Config/Settings.hpp"
+#include "../Config/Theme.hpp"
 
 namespace models {
     using namespace managers;

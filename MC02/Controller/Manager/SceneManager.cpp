@@ -24,8 +24,11 @@ void SceneManager::checkLoadScene() {
         this->unloadScene();
         this->pActiveScene = this->mapScenes[this->ESceneToLoad];
 
+        std::cout << "checkload scene" << std::endl;
+
         this->pActiveScene->onLoadResources();
         this->pActiveScene->onLoadObjects();
+        std::cout << "checkload scene" << std::endl;
 
         this->bLoading = false;
     }

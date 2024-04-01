@@ -10,6 +10,7 @@
 
 #include "../Model/Scene/MainMenuScene.hpp"
 #include "../Model/Scene/ShipScene.hpp"
+#include "../Model/Scene/AreaScene.hpp"
 
 #include "../Config/Settings.hpp"
 
@@ -35,10 +36,3 @@ namespace controllers {
             void render();
     };
 }
-
-
-/*
-edit player input (remove space)
-
-
-*/

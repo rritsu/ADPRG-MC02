@@ -4,8 +4,13 @@ using namespace controllers;
 
 
 Game::Game() : CWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Hello") {    
+    std::vector<int> vecArea = {};
+    vecArea.push_back(2);
+    vecArea.push_back(4);
+    
   //  SceneManager::getInstance()->registerScene(new MainMenuScene());
     SceneManager::getInstance()->registerScene(new ShipScene());
+    SceneManager::getInstance()->registerScene(new AreaScene(vecArea , 1, 0));
     SceneManager::getInstance()->loadScene(SceneTag::SHIP_SCENE);
     
 }
@@ -27,7 +32,10 @@ void Game::run() {
         }
 
         SceneManager::getInstance()->checkLoadScene();
+
         this->render();
+
+       // std::cout << "render" << std::endl;
     }
 }
 

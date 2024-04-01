@@ -9,6 +9,7 @@ GameObject::GameObject(std::string strName, AnimatedTexture* pTexture) {
     this->pTexture = pTexture;
     this->vecComponents = {};
     this->setFrame(0); 
+    this->pShade = NULL;
 }
 
 void GameObject::processEvents(sf::Event CEvent) {
@@ -87,6 +88,19 @@ Component* GameObject::findComponentByName(std::string strName) {
     return pGetComponent;
 }
 
+void GameObject::assignShade(GameObject* pShade) {
+    this->pShade = pShade;
+}
+
+GameObject* GameObject::getShade() {
+   return this->pShade;
+}
+
+void GameObject::setShadeSetting(sf::Vector2f vecScale, sf::Color cColor) {
+    this->pSprite->setScale(vecScale);
+    this->pSprite->setColor(cColor);
+}
+
 std::vector<Component*> GameObject::getComponents(ComponentType EType){
     std::vector<Component*> vecGetComponents = {};
     for(Component* pComponent : vecComponents) {
@@ -109,6 +123,11 @@ float GameObject::getHalfHeight() {
     return 0.0f;
 }
 
+sf::FloatRect GameObject::getGlobalBounds() {
+    if(this->pSprite != NULL)
+        return this->pSprite->getGlobalBounds();
+    return sf::FloatRect();
+}
 
 bool GameObject::getEnabled() {
     return this->bEnabled;

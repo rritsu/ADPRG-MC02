@@ -3,34 +3,66 @@
 using namespace components;
 
 PlayerControls::PlayerControls(std::string strName) : Component(strName, ComponentType::SCRIPT) {
-    this->fSpeed = 300.0f;
+    this->fX = 0.0f;
+    this->fX = 0.0f;
 }
 
 void PlayerControls::perform() {
-    PlayerInput* pPayerInput = (PlayerInput*)this->getOwner()->findComponentByName(this->pOwner->getName() + " Input");
+    Player* pPlayer = (Player*)this->getOwner();
+    sf::Sprite* pSprite = pPlayer->getSprite();
+    PlayerInput* pPlayerInput = (PlayerInput*)pPlayer->findComponentByName(this->pOwner->getName() + " Input");
     
-    if(pPayerInput == NULL) {
+    if(pPlayerInput == NULL) {
         std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
     }
     else {
-        float fOffset = this->fSpeed * this->tDeltaTime.asSeconds();
+
+        this->fX = pSprite->getPosition().x;
+        this->fY = pSprite->getPosition().y;
         
-        if(pPayerInput->getUp()) {
-             this->getOwner()->getSprite()->move(0.0f, -fOffset);
+        if(pPlayerInput->getUp()) {
+            pSprite->setPosition(this->fX, this->fY - 100.0f);
+            pPlayerInput->resetMovement();
         }
 
-        if(pPayerInput->getDown())
-             this->getOwner()->getSprite()->move(0.0f, fOffset);
+        else if(pPlayerInput->getDown()) {
+            pSprite->setPosition(this->fX, this->fY + 100.0f);
+            pPlayerInput->resetMovement();
+        }
         
-        if(pPayerInput->getLeft())
-            this->getOwner()->getSprite()->move(-fOffset, 0.0f);
+        else if(pPlayerInput->getLeft()) {
+            pPlayer->setFrame(1);
+            pSprite->setPosition(this->fX - 100.0f, this->fY);
+            pPlayerInput->resetMovement();
+        }
 
-        if(pPayerInput->getRight())
-            this->getOwner()->getSprite()->move(fOffset, 0.0f);
+        else if(pPlayerInput->getRight()) {
+            pPlayer->setFrame(0);
+            pSprite->setPosition(this->fX + 100.0f, this->fY);
+            pPlayerInput->resetMovement();  
+        }
 
-      //  if(pPayerInput->getSpace()) {
-         //   pPayerInput->resetSpace();
-          //  ObjectPoolManager::getInstance()->getPool(PoolTag::PLAYER_BULLET)->requestPoolable();
-      //  }
+        this->boundPlayer();
+        
+    }
+}
+
+void PlayerControls::boundPlayer() {
+    sf::Sprite* pSprite = this->getOwner()->getSprite();
+
+    if(this->fX >= SCREEN_WIDTH) {
+        pSprite->setPosition(SCREEN_WIDTH - 100.0F, this->fY);
+    }
+
+    if(this->fX < 0.0f) {
+        pSprite->setPosition(0.0f, this->fY);
+    }
+
+    if(this->fY >= SCREEN_HEIGHT) {
+        pSprite->setPosition(this->fX, SCREEN_HEIGHT - 100.0f);
+    }
+
+    if(this->fY < 0.0f) {
+        pSprite->setPosition(this->fX, 0.0f);
     }
 }

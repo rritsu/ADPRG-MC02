@@ -29,10 +29,6 @@ void PlayerInput::processKeyInput(bool bPressed) {
     sf::Keyboard::Key CKey = this->CEvent.key.code;
 
     switch(CKey) {
-        case sf::Keyboard::Space:
-            this->bSpace = bPressed;
-            break;
-
         case sf::Keyboard::W:
             this->bUp = bPressed;
             break;
@@ -56,6 +52,13 @@ void PlayerInput::processKeyInput(bool bPressed) {
 
 void PlayerInput::resetSpace() {
     this->bSpace = false;
+}
+
+void PlayerInput::resetMovement() {
+    this->bUp = false;
+    this->bLeft = false;
+    this->bRight = false;
+    this->bDown = false;
 }
 
 bool PlayerInput::getSpace() {
