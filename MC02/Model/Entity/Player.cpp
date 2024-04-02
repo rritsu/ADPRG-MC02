@@ -27,6 +27,7 @@ void Player::initialize() {
     pCollider->assignListener(this);
     this->attachComponent(pCollider);
     PhysicsManager::getInstance()->trackCollider(pCollider);
+
 }
 
 void Player::onCollisionEnter(GameObject* pGameObject) {}

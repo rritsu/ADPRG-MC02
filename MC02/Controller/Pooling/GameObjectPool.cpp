@@ -37,6 +37,18 @@ PoolableObject* GameObjectPool::requestPoolable() {
 }
 
 std::vector<PoolableObject*> GameObjectPool::requestPoolableBatch(int nRequestSize) {
+    std::vector<PoolableObject*> vecPoolableObjects;
+    PoolableObject* pPoolableObject;
+
+    for(int i = 0; i < nRequestSize; i++) {
+        pPoolableObject = this->requestPoolable();
+        if(pPoolableObject != NULL)
+            vecPoolableObjects.push_back(pPoolableObject);
+    }
+
+    if(vecPoolableObjects.size() > 0)
+        return vecPoolableObjects;
+
     return {};
 }
 

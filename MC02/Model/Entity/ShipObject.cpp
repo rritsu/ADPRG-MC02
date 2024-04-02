@@ -12,7 +12,7 @@ void ShipObject::initialize() {
    // this->pSprite->setPosition(100.0f, 100.0f);
     this->getSprite()->setPosition(this->vecPosition);
 
-    std::cout << this->strName << std::endl;
+ //   std::cout << this->strName << std::endl;
 
     Renderer* pRenderer = new Renderer(this->strName + " Renderer");
     pRenderer->assignDrawable(this->pSprite);

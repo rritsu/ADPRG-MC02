@@ -23,6 +23,7 @@ namespace managers {
         public:
             bool getLoaded(SceneTag ETag);
 
+
         private:
             static SceneManager* P_SHARED_INSTANCE;
 

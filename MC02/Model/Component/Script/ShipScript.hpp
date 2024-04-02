@@ -9,6 +9,7 @@
 #include "../../Entity/Ship.hpp"
 #include "../../../Controller/Manager/GameObjectManager.hpp" 
 #include "../../../Controller/Manager/SceneManager.hpp" 
+#include "../../../Controller/Manager/RoomManager.hpp" 
 #include "../../../Config/Theme.hpp"
 
 

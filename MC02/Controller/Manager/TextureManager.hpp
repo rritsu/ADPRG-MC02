@@ -5,8 +5,11 @@
 
 #include "../../Model/Enum/AssetType.hpp"
 #include "../../Model/Enum/SceneTag.hpp"
+#include "../../Model/AnimatedTexture.hpp"
 
 namespace managers {
+    using namespace models;
+
     class TextureManager {
         private: 
             std::unordered_map<AssetType, std::vector<sf::Texture*>> mapTexture;
@@ -19,6 +22,7 @@ namespace managers {
             std::vector<sf::Texture*> getTexture(AssetType EType);
             sf::Texture* getTextureAt(AssetType EType, int nFrame);
             void unloadAll();
+        
         
         private:
             void loadPlayer();

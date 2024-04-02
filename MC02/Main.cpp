@@ -7,7 +7,7 @@
 
 
 #include "Controller/Manager/GameObjectManager.cpp"
-
+#include "Controller/Manager/RoomManager.cpp"
 #include "Controller/Manager/TextureManager.cpp"
 #include "Controller/Manager/SceneManager.cpp"
 //#include "Controller/Manager/SFXManager.cpp"
@@ -38,6 +38,8 @@
 #include "Model/Entity/ShipObject.cpp"
 #include "Model/Entity/Tile.cpp"
 #include "Model/Entity/Ship.cpp"
+#include "Model/Entity/Door.cpp"
+#include "Model/Entity/Room.cpp"
 
 #include "Model/Entity/Enemy/Enemy.cpp"
 #include "Model/Entity/Enemy/Bug.cpp"
@@ -48,7 +50,7 @@
 
 #include "Model/Scene/MainMenuScene.cpp"
 #include "Model/Scene/ShipScene.cpp"
-#include "Model/Scene/AreaScene.cpp"
+#include "Model/Scene/RoomScene.cpp"
 
 #include "Model/AnimatedTexture.cpp"
 #include "Model/EmptyGameObject.cpp"

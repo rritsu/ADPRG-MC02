@@ -45,7 +45,7 @@ namespace models {
             std::vector<Component*> getComponents(ComponentType EType);
             float getHalfWidth();
             float getHalfHeight();
-            sf::FloatRect getGlobalBounds();
+            virtual sf::FloatRect getGlobalBounds();
             GameObject* getShade();
             void setShadeSetting(sf::Vector2f vecScale, sf::Color cColor);
             void setFrame(int nFrame);

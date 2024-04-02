@@ -3,11 +3,13 @@
 #include "iostream"
 #include "../Scene.hpp"
 #include "../Enum/SceneTag.hpp"
+#include "../../Controller/Manager/RoomManager.hpp"
 #include "../../Controller/Manager/TextureManager.hpp"
 #include "../../Controller/Utility/Utility.hpp"
 #include "../AnimatedTexture.hpp"
 #include "../Entity/Tile.hpp"
 #include "../Entity/Player.hpp"
+#include "../Entity/Door.hpp"
 #include "../../Config/Settings.hpp"
 
 namespace scenes {
@@ -16,14 +18,14 @@ namespace scenes {
     using namespace entities;
     using namespace models;
 
-    class AreaScene : public Scene {
+    class RoomScene : public Scene {
         private:
             int nAreaIndex;
             int nConnectedIndex;
             int nBackIndex;
 
         public:
-            AreaScene(std::vector<int> vecArea, int nAreaIndex, int nBackIndex);
+            RoomScene(SceneTag ETag);
 
         public:
             void onLoadResources();
@@ -33,6 +35,7 @@ namespace scenes {
         private:
             void createGrid();
             void createPlayer();
+            void createDoors();
 
         public:
             int getAreaIndex();
