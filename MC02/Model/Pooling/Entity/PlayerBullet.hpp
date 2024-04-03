@@ -2,7 +2,7 @@
 
 #include "../PoolableObject.hpp"
 #include "../../Entity/Ship.hpp"
-#include "../../Component/Script/BulletMovement.hpp"
+//#include "../../Component/Script/BulletMovement.hpp"
 //#include "../"
 
 namespace poolables {
