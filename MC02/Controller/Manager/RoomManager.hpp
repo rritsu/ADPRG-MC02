@@ -24,13 +24,8 @@ namespace managers {
         public:
            // void initializeConnectedRooms();
             std::vector<int> getAdjacentRooms(int nRoomIndex);
-<<<<<<< Updated upstream
-            void generateArea();
-            void generateRooms();
-=======
             void generateRooms();
             void generateRoomIndeces();
->>>>>>> Stashed changes
             void addRoom(Room* pRoom);
             Room* findRoomByIndex(int nRoomIndex);
             void deleteAllRooms();

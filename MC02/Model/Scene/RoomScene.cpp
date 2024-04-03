@@ -16,10 +16,7 @@ void RoomScene::onLoadObjects() {
     this->createDoors();
     this->createPlayer();
     this->createBorders();
-<<<<<<< Updated upstream
-=======
    // this->referScraps();
->>>>>>> Stashed changes
 
 }
 
@@ -38,13 +35,8 @@ void RoomScene::createGrid() {
 
     for(int nRow = 0; nRow < GRID_WIDTH; nRow++) {
         for(int nCol = 0; nCol < GRID_HEIGHT; nCol++) {
-<<<<<<< Updated upstream
-            Tile* pAreaTile = new Tile("Area Tile" + std::to_string(nRow) + std::to_string(nCol), pTexture, sf::Vector2f(nRow * 100.0f, nCol * 100.0f));
-            this->registerObject(pAreaTile);
-=======
             Tile* pRoomTile = new Tile("Room Tile" + std::to_string(nRow) + std::to_string(nCol), pTexture, sf::Vector2f(nRow * 100.0f, nCol * 100.0f));
             this->registerObject(pRoomTile);
->>>>>>> Stashed changes
         }
     }
 }

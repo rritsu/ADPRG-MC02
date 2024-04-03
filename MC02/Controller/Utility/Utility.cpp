@@ -7,10 +7,7 @@ int Utility::getRandomNumber(int nLowerbound, int nUpperbound) {
    // int nRet = rand() % (nUpperbound - nLowerbound + 1);
     //std::cout << "nRet " << nRet << std::endl;
     //return nRet;
-<<<<<<< Updated upstream
-=======
     return 0;
->>>>>>> Stashed changes
 }
 
 void Utility::pushConnectedIndeces(std::vector<int>& vecIndex, int nIndex) {

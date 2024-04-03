@@ -23,11 +23,7 @@ void ShipScript::perform() {
                 //SceneManager::getInstance()->loadScene(SceneTag::AREA_SCENE); 
                 //start day wowowowowo
              //   SceneManager::getInstance()->loadScene(SceneTag::MAIN_MENU_SCENE);
-<<<<<<< Updated upstream
-                RoomManager::getInstance()->generateArea();
-=======
                 AreaManager::getInstance()->generateArea();
->>>>>>> Stashed changes
             }
         }
 
