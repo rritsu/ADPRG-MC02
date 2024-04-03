@@ -1,7 +1,7 @@
 #include "Ship.hpp"
 using namespace entities;
 
-Ship::Ship(std::string strName, AnimatedTexture* pTexture) : GameObject(strName, pTexture){}
+Ship::Ship(std::string strName) : GameObject(strName, NULL){}
 
 void Ship::initialize() {
    // BackgroundInput* pInput = new BackgroundInput(this->strName + " Input");
@@ -15,7 +15,7 @@ void Ship::initialize() {
     ShipScript* pShipScript = new ShipScript(this->strName + " Script");
     this->attachComponent(pShipScript);
     
-    Renderer* pRenderer = new Renderer(this->strName + " Renderer");
-    pRenderer->assignDrawable(this->pSprite);
-    this->attachComponent(pRenderer);
+   // Renderer* pRenderer = new Renderer(this->strName + " Renderer");
+   // pRenderer->assignDrawable(this->pSprite);
+    //this->attachComponent(pRenderer);
 }

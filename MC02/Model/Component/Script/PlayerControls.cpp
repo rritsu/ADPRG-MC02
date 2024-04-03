@@ -20,29 +20,29 @@ void PlayerControls::perform() {
         this->fX = pSprite->getPosition().x;
         this->fY = pSprite->getPosition().y;
         
-        if(pPlayerInput->getUp()) {
+        if(pPlayerInput->getUp() && !pPlayer->getTopBounds()) {
             pSprite->setPosition(this->fX, this->fY - 100.0f);
             pPlayerInput->resetMovement();
         }
 
-        else if(pPlayerInput->getDown()) {
-            pSprite->setPosition(this->fX, this->fY + 100.0f);
-            pPlayerInput->resetMovement();
-        }
-        
-        else if(pPlayerInput->getLeft()) {
+        else if(pPlayerInput->getLeft() && !pPlayer->getLeftBounds()) {
             pPlayer->setFrame(1);
             pSprite->setPosition(this->fX - 100.0f, this->fY);
             pPlayerInput->resetMovement();
         }
 
-        else if(pPlayerInput->getRight()) {
+        else if(pPlayerInput->getDown() && !pPlayer->getBottomBounds()) {
+            pSprite->setPosition(this->fX, this->fY + 100.0f);
+            pPlayerInput->resetMovement();
+        }
+
+        else if(pPlayerInput->getRight() && !pPlayer->getRightBounds()) {
             pPlayer->setFrame(0);
             pSprite->setPosition(this->fX + 100.0f, this->fY);
             pPlayerInput->resetMovement();  
         }
 
-        this->boundPlayer();
+      //  this->boundPlayer();
         
     }
 }

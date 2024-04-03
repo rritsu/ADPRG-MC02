@@ -37,7 +37,7 @@ void RoomManager::generateRooms() {
            // std::cout << "stuck" << std::endl;
         }while(this->checkDuplicate(nTempIndex));
 
-        std::cout << this->nCurrentRoom << std::endl;
+   //     std::cout << this->nCurrentRoom << std::endl;
 
         this->nCurrentRoom = this->vecIndeces[nTempIndex];
         this->clearIndeces();
@@ -54,8 +54,8 @@ void RoomManager::generateRooms() {
 void RoomManager::addRoom(Room* pRoom) {
     this->mapRooms[pRoom->getRoomIndex()] = pRoom;
     this->vecRooms.push_back(pRoom);
-    //GameObjectManager::getInstance()->addObject(pRoom);
-    pRoom->initialize();
+    GameObjectManager::getInstance()->addObject(pRoom);
+   // pRoom->initialize();
 }
 
 Room* RoomManager::findRoomByIndex(int nRoomIndex) {

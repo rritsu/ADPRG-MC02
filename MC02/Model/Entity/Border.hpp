@@ -9,6 +9,7 @@
 namespace entities {
     using namespace components;
     using namespace interfaces;
+    using namespace managers;
 
     class Border : public GameObject, public CollisionListener{
         private:

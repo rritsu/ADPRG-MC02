@@ -16,6 +16,10 @@ namespace entities {
     class Player : public GameObject, public CollisionListener {
         private:
             sf::Color CNormalColor;
+            bool bTopBounds;
+            bool bLeftBounds;
+            bool bBottomBounds;
+            bool bRightBounds;
 
         public:
             Player(std::string strName, AnimatedTexture* pTexture);
@@ -24,5 +28,11 @@ namespace entities {
             void initialize();
             void onCollisionEnter(GameObject* pGameObject);
             void onCollisionExit(GameObject* pGameObject);
+
+        public:
+            bool getTopBounds();
+            bool getLeftBounds();
+            bool getBottomBounds();
+            bool getRightBounds();
     };
 }

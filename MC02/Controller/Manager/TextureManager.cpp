@@ -3,11 +3,11 @@ using namespace managers;
 
 
 void TextureManager::loadMainMenu() {
-    /*
+    
     sf::Texture* pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/Space Impact/main_menu_background.png");
     this->mapTexture[AssetType::MAIN_MENU_BACKGROUND].push_back(pTexture);
-    */
+    
 
 }
 

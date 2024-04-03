@@ -28,6 +28,7 @@
 #include "Model/Component/Renderer/Renderer.cpp"
 #include "Model/Component/Script/BackgroundAction.cpp"
 #include "Model/Component/Script/ShipScript.cpp"
+#include "Model/Component/Script/RoomScript.cpp"
 
 #include "Model/Component/Script/PlayerControls.cpp"
 #include "Model/Component/Physics/Collider.cpp"

@@ -3,11 +3,6 @@ using namespace scenes;
 
 RoomScene::RoomScene(SceneTag ETag, int nRoomIndex) : Scene(ETag) {
     this->nRoomIndex = nRoomIndex;
-    //randomize
-    
-    //randomize index
-    //int nRandIndex = Utility::getInstance()->getRandomNumber(nAreaIndex, vecArea.size());
-    //this->nConnectedIndex = nRandInde 
 }
 
 void RoomScene::onLoadResources() {
@@ -15,12 +10,20 @@ void RoomScene::onLoadResources() {
 }
 
 void RoomScene::onLoadObjects() {
-  // this->createBackground();
+    this->createNullObjects();
+    
     this->createGrid();
     this->createDoors();
     this->createPlayer();
+    this->createBorders();
 
 }
+
+void RoomScene::createNullObjects() {
+    EmptyGameObject* pHolder = new EmptyGameObject("Physics Manager Holder");
+    PhysicsManager::initialize("Physics Manager", pHolder);
+    GameObjectManager::getInstance()->addObject(pHolder);
+} 
 
 void RoomScene::onUnloadResources() {
     TextureManager::getInstance()->unloadAll();
@@ -37,6 +40,19 @@ void RoomScene::createGrid() {
     }
 }
 
+void RoomScene::createBorders() {
+    sf::FloatRect CRect = sf::FloatRect(0.0f, 0.0f, SCREEN_WIDTH, 0.1f);
+    GameObjectManager::getInstance()->addObject(new Border("Top Border", CRect));
+
+    CRect = sf::FloatRect(0.0f, 0.0f, 0.1f, SCREEN_HEIGHT);
+    GameObjectManager::getInstance()->addObject(new Border("Left Border", CRect));
+
+    CRect = sf::FloatRect(0.0f, SCREEN_HEIGHT, SCREEN_WIDTH, 0.1f);
+    GameObjectManager::getInstance()->addObject(new Border("Bottom Border", CRect));
+
+    CRect = sf::FloatRect(SCREEN_WIDTH - DISTANCE, 0.0f, 0.1f, SCREEN_HEIGHT);
+    GameObjectManager::getInstance()->addObject(new Border("Right Border", CRect));
+}
 
 void RoomScene::createPlayer() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::PLAYER));
@@ -51,47 +67,47 @@ void RoomScene::createDoors() {
     std::vector<int> vecAdjacent = RoomManager::getInstance()->getAdjacentRooms(pRoom->getRoomIndex());
 
 
- //   for(int x : vecAdjacent) 
-    //    std::cout << "adj " << x << " "; 
+   for(int x : vecAdjacent) 
+        std::cout << "adj " << x << " "; 
     
 
     this->checkAdjacentRooms(vecRooms, vecAdjacent);
 
-  //  for(int x : vecAdjacent) 
-   //     std::cout << "after " << x << " ";
+    for(int x : vecAdjacent) 
+        std::cout << "after " << x << " ";
     
-   // std::cout << "size: " << vecAdjacent.size() << std::endl;
+    std::cout << "size: " << vecAdjacent.size() << std::endl;
     
  
     for(int i = 0; i < vecAdjacent.size(); i++) {
         pRoom->assignDoors(vecAdjacent[i]);
 
         if(pRoom->getTopDoor()) {
-            sf::Vector2f vecPosition = sf::Vector2f(400.0f, 0.0f);
+            sf::Vector2f vecPosition = sf::Vector2f(600.0f, 0.0f);
             Door* pDoor = new Door(DoorType::TOP, "Room" + std::to_string(pRoom->getRoomIndex()) + "Top Door", pTexture, vecPosition);
             this->registerObject(pDoor);
-            std::cout << "top" << std::endl;
+            std::cout << "top door" << std::endl;
         }
 
         if(pRoom->getLeftDoor()) {
             sf::Vector2f vecPosition = sf::Vector2f(0.0f, 300.0f);
             Door* pDoor = new Door(DoorType::LEFT, "Room" + std::to_string(pRoom->getRoomIndex()) + "Left Door", pTexture, vecPosition);
             this->registerObject(pDoor);
-            std::cout << "left" << std::endl;
+            std::cout << "left door" << std::endl;
         }
 
         if(pRoom->getBottomDoor()) {
-            sf::Vector2f vecPosition = sf::Vector2f(700.0f, 600.0f);
+            sf::Vector2f vecPosition = sf::Vector2f(600.0f, 600.0f);
             Door* pDoor = new Door(DoorType::BOTTOM, "Room" + std::to_string(pRoom->getRoomIndex()) + "Bottom Door", pTexture, vecPosition);
             this->registerObject(pDoor);
-            std::cout << "bottom" << std::endl;
+            std::cout << "bottom door" << std::endl;
         }
 
         if(pRoom->getRightDoor()) {
             sf::Vector2f vecPosition = sf::Vector2f(1100.0f, 300.0f);
             Door* pDoor = new Door(DoorType::RIGHT, "Room" + std::to_string(pRoom->getRoomIndex()) + "Right Door", pTexture, vecPosition);
             this->registerObject(pDoor);
-            std::cout << "right" << std::endl;
+            std::cout << "right door" << std::endl;
         }
 
     }

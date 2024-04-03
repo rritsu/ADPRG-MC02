@@ -22,6 +22,7 @@ void ShipScript::perform() {
             if(pPortal->getPlayerCollision()) {
                 //SceneManager::getInstance()->loadScene(SceneTag::AREA_SCENE); 
                 //start day wowowowowo
+             //   SceneManager::getInstance()->loadScene(SceneTag::MAIN_MENU_SCENE);
                 RoomManager::getInstance()->generateArea();
             }
         }

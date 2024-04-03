@@ -11,6 +11,8 @@
 #include "../Entity/Player.hpp"
 #include "../Entity/Door.hpp"
 #include "../Entity/Room.hpp"
+#include "../Entity/Border.hpp"
+#include "../EmptyGameObject.hpp"
 #include "../../Config/Settings.hpp"
 
 namespace scenes {
@@ -34,7 +36,9 @@ namespace scenes {
             void onUnloadResources();
         
         private:
+            void createNullObjects();
             void createGrid();
+            void createBorders();
             void createPlayer();
             void createDoors();
             void checkAdjacentRooms(std::vector<Room*> vecRooms, std::vector<int>& vecAdjacent);

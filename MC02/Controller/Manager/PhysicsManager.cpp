@@ -24,7 +24,7 @@ void PhysicsManager::perform() {
 
                     pColliderA->onCollisionExit(pColliderB);
                     pColliderB->onCollisionExit(pColliderA);
-                   // std::cout << "no collision" << std::endl;
+                 //   std::cout << "no collision" << std::endl;
                 }
             }
         }
