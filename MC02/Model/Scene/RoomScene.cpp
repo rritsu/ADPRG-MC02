@@ -115,8 +115,6 @@ void RoomScene::createDoors() {
 
 }
 
-<<<<<<< Updated upstream
-=======
 void RoomScene::referScraps() {
   
     GameObjectPool* pScrapPool = ObjectPoolManager::getInstance()->getPool(PoolTag::SCRAP_POOL);
@@ -130,7 +128,6 @@ void RoomScene::referScraps() {
     //paused here, need to figure out how to render the scraps and properly instantiating them
 }
 
->>>>>>> Stashed changes
 void RoomScene::checkAdjacentRooms(std::vector<Room*> vecRooms, std::vector<int>& vecAdjacent) {
     bool bCheck = false;
     int nIndex = -1;
