@@ -6,6 +6,7 @@
 
 namespace poolables{
     
+    using namespace models;
     using namespace interfaces;
 
     class Enemy : public PoolableObject, public CollisionListener {
@@ -20,8 +21,8 @@ namespace poolables{
 
         public:
             virtual void initialize() = 0;
-            virtual void onCollisionEnter(GameObject* pGameObject);
-            virtual void onCollisionExit(GameObject* pGameObject);
+            virtual void onCollisionEnter(GameObject* pGameObject) = 0;
+            virtual void onCollisionExit(GameObject* pGameObject) = 0;
         
 
 

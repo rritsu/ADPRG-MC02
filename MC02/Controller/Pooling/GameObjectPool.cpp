@@ -51,7 +51,6 @@ std::vector<PoolableObject*> GameObjectPool::requestPoolableBatch(int nRequestSi
 
     return {};
 }
-
 void GameObjectPool::releasePoolable(PoolableObject* pPoolableObject) {
     int nIndex = -1;
     for(int i = 0; i < this->vecUsedObject.size() && nIndex == -1; i++) {

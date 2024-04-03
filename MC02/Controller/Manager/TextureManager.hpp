@@ -19,6 +19,7 @@ namespace managers {
             void loadMainMenu();
             void loadShip();
             void loadArea();
+            void loadScrap();
             std::vector<sf::Texture*> getTexture(AssetType EType);
             sf::Texture* getTextureAt(AssetType EType, int nFrame);
             void unloadAll();

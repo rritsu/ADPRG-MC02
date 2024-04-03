@@ -29,7 +29,7 @@ void PlayerBullet::onActivate() {
 void PlayerBullet::onRelease() {
 }
 
-PoolableObject* PlayerBullet::clone() {
+    PoolableObject* PlayerBullet::clone() {
     PoolableObject* pPoolableObject = new PlayerBullet(this->strName, new AnimatedTexture(*this->pTexture), this->pShip);
 
     return pPoolableObject;
