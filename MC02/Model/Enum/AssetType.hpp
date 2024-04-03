@@ -11,5 +11,6 @@ enum class AssetType : int {
     LAPTOP,
     SHIP_TILE,
     AREA_TILE,
-    PORTAL
+    PORTAL,
+    DOOR
 };
