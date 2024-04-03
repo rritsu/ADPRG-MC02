@@ -16,6 +16,10 @@ void RoomScene::onLoadObjects() {
     this->createDoors();
     this->createPlayer();
     this->createBorders();
+<<<<<<< Updated upstream
+=======
+   // this->referScraps();
+>>>>>>> Stashed changes
 
 }
 
@@ -34,8 +38,13 @@ void RoomScene::createGrid() {
 
     for(int nRow = 0; nRow < GRID_WIDTH; nRow++) {
         for(int nCol = 0; nCol < GRID_HEIGHT; nCol++) {
+<<<<<<< Updated upstream
             Tile* pAreaTile = new Tile("Area Tile" + std::to_string(nRow) + std::to_string(nCol), pTexture, sf::Vector2f(nRow * 100.0f, nCol * 100.0f));
             this->registerObject(pAreaTile);
+=======
+            Tile* pRoomTile = new Tile("Room Tile" + std::to_string(nRow) + std::to_string(nCol), pTexture, sf::Vector2f(nRow * 100.0f, nCol * 100.0f));
+            this->registerObject(pRoomTile);
+>>>>>>> Stashed changes
         }
     }
 }
@@ -114,6 +123,22 @@ void RoomScene::createDoors() {
 
 }
 
+<<<<<<< Updated upstream
+=======
+void RoomScene::referScraps() {
+  
+    GameObjectPool* pScrapPool = ObjectPoolManager::getInstance()->getPool(PoolTag::SCRAP_POOL);
+  //  pScrapPool->initialize();
+    std::cout << "scraps b4" << std::endl;
+ //   ObjectPoolManager::getInstance()->registerObjectPool(pScrapPool);
+  //    std::cout << "scraps b4" << std::endl;
+    Scrap* pScrap = (Scrap*)pScrapPool->requestPoolable();
+    //std::cout << "scraps roomscene" << std::endl;
+
+    //paused here, need to figure out how to render the scraps and properly instantiating them
+}
+
+>>>>>>> Stashed changes
 void RoomScene::checkAdjacentRooms(std::vector<Room*> vecRooms, std::vector<int>& vecAdjacent) {
     bool bCheck = false;
     int nIndex = -1;

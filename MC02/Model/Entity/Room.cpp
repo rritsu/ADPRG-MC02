@@ -13,9 +13,12 @@ Room::Room(std::string strName, AnimatedTexture* pTexture, int nRoomIndex) : Gam
 void Room::initialize() {
     SceneManager::getInstance()->registerScene(new RoomScene(RoomManager::getInstance()->getRoomTag(this->nRoomIndex), this->nRoomIndex));
 
+<<<<<<< Updated upstream
     
 
 
+=======
+>>>>>>> Stashed changes
     std::cout << "room index " << this->nRoomIndex << std::endl;
 }
 

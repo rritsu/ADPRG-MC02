@@ -2,48 +2,49 @@
 
 using namespace poolables;
 
-Scrap::Scrap(std::string strName, AnimatedTexture* pTexture) : PoolableObject(PoolTag::SCRAP_POOL, strName, pTexture){
+Scrap::Scrap(std::string strName, AnimatedTexture* pTexture) : PoolableObject(PoolTag::SCRAP_POOL, strName, pTexture) {
     this->nValue = 0;
     this->ETag = ScrapTag::NONE;
     this->bPickedup = false;
     this->vecPosition = new sf::Vector2f(0.0f, 0.0f);
+    this->nRoomIndex = 0;
 }
-void Scrap::initialize(){
-    
+void Scrap::initialize() {
+    AnimatedTexture* pTexture = NULL;
     int nRandom = Utility::getInstance()->getRandomNumber(0, 4);
     this->centerOrigin();
 
     switch(nRandom){
         case 0:
-            AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::METAL_SHEET));
+            pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::METAL_SHEET));
             this->pTexture = pTexture;
             this->nValue = 16;
             this->ETag = ScrapTag::METAL_SHEET;
             break;
 
         case 1:
-            AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::AIRHORN));
+            pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::AIRHORN));
             this->pTexture = pTexture;
             this->nValue = 62;
             this->ETag = ScrapTag::AIRHORN;
             break;
 
         case 2:
-            AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::STOP_SIGN));
+            pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::STOP_SIGN));
             this->pTexture = pTexture;
             this->nValue = 36;
             this->ETag = ScrapTag::STOP_SIGN;
             break;
 
         case 3:
-            AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::LARGE_AXLE));
+            pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::LARGE_AXLE));
             this->pTexture = pTexture;
             this->nValue = 48;
             this->ETag = ScrapTag::LARGE_AXLE;
             break;
 
         case 4:
-            AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::TOY_CUBE));
+            pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::TOY_CUBE));
             this->pTexture = pTexture;
             this->nValue = 34;
             this->ETag = ScrapTag::TOY_CUBE;
@@ -60,24 +61,24 @@ void Scrap::initialize(){
 
 }
 
-void Scrap::onActivate(){
+void Scrap::onActivate() {
 
     Collider* pCollider = (Collider*)this->findComponentByName(this->strName + " Collider");
     PhysicsManager::getInstance()->trackCollider(pCollider);
     
 }
 
-void Scrap::onRelease(){
+void Scrap::onRelease() {
     Collider* pCollider = (Collider*)this->findComponentByName(this->strName + " Collider");
     PhysicsManager::getInstance()->untrackCollider(pCollider);
 
 }
 
-void Scrap::onCollisionEnter(GameObject* pGameObject){
+void Scrap::onCollisionEnter(GameObject* pGameObject) {
 
 }
 
-void Scrap::onCollisionExit(GameObject* pGameObject){
+void Scrap::onCollisionExit(GameObject* pGameObject) {
 
 }
 
@@ -89,12 +90,16 @@ PoolableObject* Scrap::clone() {
 }
 
 
-int Scrap::getValue(){
+int Scrap::getValue() {
     return this->nValue;
 }
 
-ScrapTag Scrap::getTag(){
+ScrapTag Scrap::getTag() {
     return this->ETag;
+}
+
+void Scrap::setRoomIndex(int nRoomIndex) {
+    this->nRoomIndex = nRoomIndex;
 }
 
 

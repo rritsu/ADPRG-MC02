@@ -5,8 +5,8 @@
 
 #include "GameObjectManager.hpp"
 #include "ObjectPoolManager.hpp"
-#include "Utility/Utility.hpp"
-#include "../../Pooling/Entity/Scrap.hpp"
+#include "../Utility/Utility.hpp"
+#include "../../../Model/Pooling/Entity/Scrap.hpp"
 
 
 namespace managers {

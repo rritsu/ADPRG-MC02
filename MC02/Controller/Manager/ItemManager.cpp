@@ -18,8 +18,8 @@ void ItemManager::clearScrapPool(){
 
 //uses the pool of SCRAP to dump in the area for the DAY, this is NOT done each time a room is entered, this is done on area INITIALIZATION
 void ItemManager::generateScrap(int nAreaIndex){
-    GameObjectPool* scrapPool = ObjectPoolManager::getInstance()->getPool(PoolTag::SCRAP_POOL);
-    Scrap* pScrap = (Scrap*)scrapPool->requestPoolable();
+    GameObjectPool* pScrapPool = ObjectPoolManager::getInstance()->getPool(PoolTag::SCRAP_POOL);
+    Scrap* pScrap = (Scrap*)pScrapPool->requestPoolable();
     
     if(pScrap != NULL) {
 
@@ -52,13 +52,13 @@ void ItemManager::generateScrap(int nAreaIndex){
 
 //gets an item in a specific area
 PoolableObject* ItemManager::getItemAtLocation(int nTileRowIndex, int nTileColumnIndex){
-    
+    return NULL;    
 
 }
 
 //gets ALL items in a location to be loaded in
 std::vector<PoolableObject*> ItemManager::getItemsAtLocation(int nAreaIndex){
-
+    return {};
 }
 
 //room index to denote which room, tile index to denote what tile it will be placed on

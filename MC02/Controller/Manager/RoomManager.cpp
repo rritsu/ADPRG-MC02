@@ -2,6 +2,7 @@
 
 using namespace managers;
 
+<<<<<<< Updated upstream
 void RoomManager::generateArea() { 
     //generate how many scraps
     //generate how many rooms
@@ -10,11 +11,20 @@ void RoomManager::generateArea() {
     //enemies
     
     this->generateRooms();
+=======
+void RoomManager::generateRooms() { 
+
+  //  this->generateRoomIndeces();
+>>>>>>> Stashed changes
     SceneManager::getInstance()->loadScene(this->getRoomTag(this->nEntryRoom));
     std::cout << "entryyy " << this->nEntryRoom << std::endl;
 }
 
+<<<<<<< Updated upstream
 void RoomManager::generateRooms() {
+=======
+void RoomManager::generateRoomIndeces() {
+>>>>>>> Stashed changes
     int nTempIndex = 0;
 
     this->nNumRooms = this->getRandomNumber(4, 9-3);

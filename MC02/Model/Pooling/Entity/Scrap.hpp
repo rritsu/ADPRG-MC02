@@ -1,10 +1,12 @@
+#pragma once
+
 #include "../Enum/ScrapTag.hpp"
 #include "../../../Controller/Manager/TextureManager.hpp" 
 #include "../../../Controller/Utility/Utility.hpp" 
 #include "../PoolableObject.hpp"
-#include "../Component/Physics/Collider.hpp"
-#include "../Interface/CollisionListener.hpp"
-#include "../../Controller/Manager/PhysicsManager.hpp"
+#include "../../Component/Physics/Collider.hpp"
+#include "../../Interface/CollisionListener.hpp"
+#include "../../../Controller/Manager/PhysicsManager.hpp"
 
 namespace poolables {
     using namespace models;
@@ -19,6 +21,7 @@ namespace poolables {
             int nValue;
             bool bPickedup;
             sf::Vector2f* vecPosition;
+            int nRoomIndex;
 
         public:
             Scrap(std::string strName, AnimatedTexture* pTexture);
@@ -34,6 +37,7 @@ namespace poolables {
         public:
             int getValue();
             ScrapTag getTag();
+            void setRoomIndex(int nRoomIndex);
             
     };
 }

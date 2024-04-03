@@ -41,6 +41,10 @@ namespace scenes {
             void createBorders();
             void createPlayer();
             void createDoors();
+<<<<<<< Updated upstream
+=======
+            void referScraps();
+>>>>>>> Stashed changes
             void checkAdjacentRooms(std::vector<Room*> vecRooms, std::vector<int>& vecAdjacent);
 
         public:

@@ -12,6 +12,7 @@ enum class AssetType : int {
     SHIP_TILE,
     AREA_TILE,
     PORTAL,
+    DOOR,
     METAL_SHEET,
     AIRHORN,
     TOY_CUBE,

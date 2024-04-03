@@ -79,32 +79,7 @@ void TextureManager::loadPlayer() {
     this->vecAssetTypes.push_back(AssetType::PLAYER);
 }
 
-void TextureManager::loadScrap() {
-    sf::Texture* pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Scrap/airhorn.png");
-    this->mapTexture[AssetType::AIRHORN].push_back(pTexture);
-    this->vecAssetTypes.push_back(AssetType::AIRHORN);
 
-    pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Scrap/axle.png");
-    this->mapTexture[AssetType::LARGE_AXLE].push_back(pTexture);
-    this->vecAssetTypes.push_back(AssetType::LARGE_AXLE);
-
-    pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Scrap/metalsheet.png");
-    this->mapTexture[AssetType::METAL_SHEET].push_back(pTexture);
-    this->vecAssetTypes.push_back(AssetType::METAL_SHEET);
-
-    pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Scrap/airhorn.png");
-    this->mapTexture[AssetType::STOP_SIGN].push_back(pTexture);
-    this->vecAssetTypes.push_back(AssetType::STOP_SIGN);
-
-    pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Scrap/airhorn.png");
-    this->mapTexture[AssetType::TOY_CUBE].push_back(pTexture);
-    this->vecAssetTypes.push_back(AssetType::TOY_CUBE);
-}
 
 std::vector<sf::Texture*> TextureManager::getTexture(AssetType EType) {
     return this->mapTexture[EType];

@@ -11,7 +11,9 @@
 #include "Controller/Manager/TextureManager.cpp"
 #include "Controller/Manager/SceneManager.cpp"
 //#include "Controller/Manager/SFXManager.cpp"
+#include "Controller/Manager/AreaManager.cpp"
 #include "Controller/Manager/PhysicsManager.cpp"
+#include "Controller/Manager/ItemManager.cpp"
 
 #include "Controller/Utility/Utility.cpp"
 
@@ -41,13 +43,22 @@
 #include "Model/Entity/Ship.cpp"
 #include "Model/Entity/Door.cpp"
 #include "Model/Entity/Room.cpp"
+<<<<<<< Updated upstream
 
 #include "Model/Entity/Enemy/Enemy.cpp"
 #include "Model/Entity/Enemy/Bug.cpp"
 #include "Model/Entity/Enemy/Coilhead.cpp"
 #include "Model/Entity/Enemy/Flea.cpp"
+=======
+#include "Model/Entity/Item/Item.cpp"
+>>>>>>> Stashed changes
 
 #include "Model/Pooling/PoolableObject.cpp"
+#include "Model/Pooling/Entity/Scrap.cpp"
+#include "Model/Pooling/Entity/Enemy/Enemy.cpp"
+#include "Model/Pooling/Entity/Enemy/Bug.cpp"
+#include "Model/Pooling/Entity/Enemy/Coilhead.cpp"
+#include "Model/Pooling/Entity/Enemy/Flea.cpp"
 
 #include "Model/Scene/MainMenuScene.cpp"
 #include "Model/Scene/ShipScene.cpp"
