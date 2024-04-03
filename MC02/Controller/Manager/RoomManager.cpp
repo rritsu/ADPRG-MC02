@@ -11,6 +11,7 @@ void RoomManager::generateArea() {
     
     this->generateRooms();
     SceneManager::getInstance()->loadScene(this->getRoomTag(this->nEntryRoom));
+    std::cout << "entryyy " << this->nEntryRoom << std::endl;
 }
 
 void RoomManager::generateRooms() {
@@ -27,7 +28,7 @@ void RoomManager::generateRooms() {
     //nvm its still buggy
     for(int i = 1; i <= nNumRooms; i++) {
         this->vecIndeces = this->getAdjacentRooms(this->nCurrentRoom);
-        Room* pRoom = new Room("Room"+std::to_string(this->nCurrentRoom), NULL, this->nCurrentRoom);
+        Room* pRoom = new Room("Room "+std::to_string(this->nCurrentRoom), NULL, this->nCurrentRoom);
         this->addRoom(pRoom);
         this->nPrevRoom = this->nCurrentRoom;
 
@@ -53,6 +54,7 @@ void RoomManager::generateRooms() {
 void RoomManager::addRoom(Room* pRoom) {
     this->mapRooms[pRoom->getRoomIndex()] = pRoom;
     this->vecRooms.push_back(pRoom);
+    //GameObjectManager::getInstance()->addObject(pRoom);
     pRoom->initialize();
 }
 

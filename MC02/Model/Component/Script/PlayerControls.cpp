@@ -42,7 +42,7 @@ void PlayerControls::perform() {
             pPlayerInput->resetMovement();  
         }
 
-       // this->boundPlayer();
+        this->boundPlayer();
         
     }
 }

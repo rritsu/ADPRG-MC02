@@ -1,8 +1,8 @@
 #include "RoomScene.hpp"
 using namespace scenes;
 
-RoomScene::RoomScene(SceneTag ETag) : Scene(ETag) {
-    this->nAreaIndex = nAreaIndex;
+RoomScene::RoomScene(SceneTag ETag, int nRoomIndex) : Scene(ETag) {
+    this->nRoomIndex = nRoomIndex;
     //randomize
     
     //randomize index
@@ -17,8 +17,9 @@ void RoomScene::onLoadResources() {
 void RoomScene::onLoadObjects() {
   // this->createBackground();
     this->createGrid();
-    this->createPlayer();
     this->createDoors();
+    this->createPlayer();
+
 }
 
 void RoomScene::onUnloadResources() {
@@ -44,25 +45,81 @@ void RoomScene::createPlayer() {
 }
 
 void RoomScene::createDoors() {
-    std::vector<Room*> vecRooms = RoomManager::getInstance()->getVecRooms();
-    std::vector<int> vecAdjacent = {};
-
+    Room* pRoom = RoomManager::getInstance()->findRoomByIndex(this->nRoomIndex);
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::DOOR));
+    std::vector<Room*> vecRooms = RoomManager::getInstance()->getVecRooms();
+    std::vector<int> vecAdjacent = RoomManager::getInstance()->getAdjacentRooms(pRoom->getRoomIndex());
 
-    for(Room* pRoom : vecRooms)
-        std::cout << pRoom->getRoomIndex() << " ";
 
-    for(int i = 0; i < vecRooms.size(); i++) {
-        //vecAdjacent = RoomManager::getInstance()->getAdjacentRooms(vecRooms[i]);
+ //   for(int x : vecAdjacent) 
+    //    std::cout << "adj " << x << " "; 
+    
+
+    this->checkAdjacentRooms(vecRooms, vecAdjacent);
+
+  //  for(int x : vecAdjacent) 
+   //     std::cout << "after " << x << " ";
+    
+   // std::cout << "size: " << vecAdjacent.size() << std::endl;
+    
+ 
+    for(int i = 0; i < vecAdjacent.size(); i++) {
+        pRoom->assignDoors(vecAdjacent[i]);
+
+        if(pRoom->getTopDoor()) {
+            sf::Vector2f vecPosition = sf::Vector2f(400.0f, 0.0f);
+            Door* pDoor = new Door(DoorType::TOP, "Room" + std::to_string(pRoom->getRoomIndex()) + "Top Door", pTexture, vecPosition);
+            this->registerObject(pDoor);
+            std::cout << "top" << std::endl;
+        }
+
+        if(pRoom->getLeftDoor()) {
+            sf::Vector2f vecPosition = sf::Vector2f(0.0f, 300.0f);
+            Door* pDoor = new Door(DoorType::LEFT, "Room" + std::to_string(pRoom->getRoomIndex()) + "Left Door", pTexture, vecPosition);
+            this->registerObject(pDoor);
+            std::cout << "left" << std::endl;
+        }
+
+        if(pRoom->getBottomDoor()) {
+            sf::Vector2f vecPosition = sf::Vector2f(700.0f, 600.0f);
+            Door* pDoor = new Door(DoorType::BOTTOM, "Room" + std::to_string(pRoom->getRoomIndex()) + "Bottom Door", pTexture, vecPosition);
+            this->registerObject(pDoor);
+            std::cout << "bottom" << std::endl;
+        }
+
+        if(pRoom->getRightDoor()) {
+            sf::Vector2f vecPosition = sf::Vector2f(1100.0f, 300.0f);
+            Door* pDoor = new Door(DoorType::RIGHT, "Room" + std::to_string(pRoom->getRoomIndex()) + "Right Door", pTexture, vecPosition);
+            this->registerObject(pDoor);
+            std::cout << "right" << std::endl;
+        }
+
     }
-    //look for adjace
 
-    /*
-    get the vec area
-    iterate
-    */
 }
 
-int RoomScene::getAreaIndex() {
-    return this->nAreaIndex;
+void RoomScene::checkAdjacentRooms(std::vector<Room*> vecRooms, std::vector<int>& vecAdjacent) {
+    bool bCheck = false;
+    int nIndex = -1;
+    int nSize = vecAdjacent.size();
+
+    for(int i = 0; i < nSize; i++) {
+        for(int j = 0; j < vecRooms.size(); j++ ) {
+            if(vecRooms[j]->getRoomIndex() == vecAdjacent[i]) {
+                bCheck = true;
+                break;
+            }
+            else 
+                bCheck = false;
+        }
+
+        nIndex = i;
+        if(bCheck == false) {
+            vecAdjacent.erase(vecAdjacent.begin() + nIndex);
+        }
+    }
+}
+
+int RoomScene::getRoomIndex() {
+    return this->nRoomIndex;
 }

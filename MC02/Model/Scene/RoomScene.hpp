@@ -10,6 +10,7 @@
 #include "../Entity/Tile.hpp"
 #include "../Entity/Player.hpp"
 #include "../Entity/Door.hpp"
+#include "../Entity/Room.hpp"
 #include "../../Config/Settings.hpp"
 
 namespace scenes {
@@ -20,12 +21,12 @@ namespace scenes {
 
     class RoomScene : public Scene {
         private:
-            int nAreaIndex;
+            int nRoomIndex;
             int nConnectedIndex;
             int nBackIndex;
 
         public:
-            RoomScene(SceneTag ETag);
+            RoomScene(SceneTag ETag, int nRoomIndex);
 
         public:
             void onLoadResources();
@@ -36,8 +37,10 @@ namespace scenes {
             void createGrid();
             void createPlayer();
             void createDoors();
+            void checkAdjacentRooms(std::vector<Room*> vecRooms, std::vector<int>& vecAdjacent);
 
         public:
-            int getAreaIndex();
+            int getRoomIndex();
+
     };
 }
