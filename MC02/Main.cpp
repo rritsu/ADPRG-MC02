@@ -43,15 +43,6 @@
 #include "Model/Entity/Ship.cpp"
 #include "Model/Entity/Door.cpp"
 #include "Model/Entity/Room.cpp"
-<<<<<<< Updated upstream
-
-#include "Model/Entity/Enemy/Enemy.cpp"
-#include "Model/Entity/Enemy/Bug.cpp"
-#include "Model/Entity/Enemy/Coilhead.cpp"
-#include "Model/Entity/Enemy/Flea.cpp"
-=======
-#include "Model/Entity/Item/Item.cpp"
->>>>>>> Stashed changes
 
 #include "Model/Pooling/PoolableObject.cpp"
 #include "Model/Pooling/Entity/Scrap.cpp"
