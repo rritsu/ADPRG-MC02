@@ -10,7 +10,7 @@ Game::Game() : CWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Hello") {
     
   //  SceneManager::getInstance()->registerScene(new MainMenuScene());
     SceneManager::getInstance()->registerScene(new ShipScene());
-    SceneManager::getInstance()->registerScene(new AreaScene(vecArea , 1, 0));
+   // SceneManager::getInstance()->registerScene(new AreaScene(vecArea , 1, 0));
     SceneManager::getInstance()->loadScene(SceneTag::SHIP_SCENE);
     
 }

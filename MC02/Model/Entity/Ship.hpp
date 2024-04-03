@@ -38,7 +38,7 @@ namespace entities {
 
     class Ship : public GameObject{
         public: 
-            Ship(std::string strName, AnimatedTexture* pTexture);
+            Ship(std::string strName);
     
         public:
             void initialize();

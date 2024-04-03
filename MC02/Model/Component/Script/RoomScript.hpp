@@ -3,29 +3,23 @@
 #include "../../Enum/ComponentType.hpp"
 
 #include "../Component.hpp"
-#include "../Input/ShipInput.hpp"
-#include "../../Entity/ShipObject.hpp"
 #include "../../Entity/Player.hpp"
-#include "../../Entity/Ship.hpp"
+#include "../../Entity/Room.hpp"
 #include "../../../Controller/Manager/GameObjectManager.hpp" 
 #include "../../../Controller/Manager/SceneManager.hpp" 
 #include "../../../Controller/Manager/RoomManager.hpp" 
-#include "../../../Config/Theme.hpp"
-
 
 namespace components {
     using namespace entities;
     using namespace managers;
 
-    class ShipScript : public Component {
+    class RoomScript : public Component {
         public:
-            ShipScript(std::string strName);
+            RoomScript(std::string strName);
 
         public:
             void perform();
 
-        private:
-            void applyShade(ShipObject* pShipObject);
     
     };
 }

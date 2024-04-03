@@ -5,6 +5,8 @@
 #include "../../Controller/Manager/TextureManager.hpp"
 #include "../AnimatedTexture.hpp"
 #include "../Entity/Background.hpp"
+#include "../Entity/Player.hpp"
+#include "../Entity/Border.hpp"
 
 namespace scenes {
     using namespace managers;

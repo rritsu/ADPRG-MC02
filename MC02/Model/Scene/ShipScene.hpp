@@ -6,7 +6,7 @@
 #include "../../Controller/Manager/TextureManager.hpp"
 #include "../../Controller/Pooling/GameObjectPool.hpp"
 #include "../../Controller/Manager/ObjectPoolManager.hpp"
-#include "../Entity/Background.hpp"
+#include "../Entity/Border.hpp"
 #include "../Entity/Player.hpp"
 #include "../Entity/ShipObject.hpp"
 #include "../Entity/Tile.hpp"
@@ -32,8 +32,8 @@ namespace scenes {
 
         private:
             void createNullObjects();
-            void createBackGround();
-          //  void createGrid();
+            void createBorders();
+            void createGrid();
             void createPlayer();
             void createShip();
             void createShipObjects();

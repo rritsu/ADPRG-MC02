@@ -11,7 +11,9 @@ void ShipScene::onLoadResources() {
 
 void ShipScene::onLoadObjects() {
     this->createNullObjects();
+    this->createBorders();
     this->createShip();
+    this->createGrid();
     this->createShipObjects();
     this->createPlayer();
 }
@@ -27,18 +29,20 @@ void ShipScene::createNullObjects() {
    // std::cout << "created null objects - shipscene" << std::endl;
 }   
 
-/*
-void ShipScene::createBackGround() {
-    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::SHIP_BACKGROUND));
-    Background* pBackground = new Background("Background", pTexture);
-    pBackground->getSprite()->setPosition(100,0);
-    this->registerObject(pBackground);
+void ShipScene::createBorders() {
+    sf::FloatRect CRect = sf::FloatRect(0.0f, 0.0f, SCREEN_WIDTH, 0.1f);
+    GameObjectManager::getInstance()->addObject(new Border("Top Border", CRect));
 
-    pBackground = new Background("test", pTexture);
-    this->registerObject(pBackground);
+    CRect = sf::FloatRect(0.0f, 0.0f, 0.1f, SCREEN_HEIGHT);
+    GameObjectManager::getInstance()->addObject(new Border("Left Border", CRect));
+
+    CRect = sf::FloatRect(0.0f, SCREEN_HEIGHT, SCREEN_WIDTH, 0.1f);
+    GameObjectManager::getInstance()->addObject(new Border("Bottom Border", CRect));
+
+    CRect = sf::FloatRect(SCREEN_WIDTH - DISTANCE, 0.0f, 0.1f, SCREEN_HEIGHT);
+    GameObjectManager::getInstance()->addObject(new Border("Right Border", CRect));
 }
-*/
-/*
+
 void ShipScene::createGrid() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::SHIP_TILE));
     for(int nRow = 0; nRow < GRID_WIDTH; nRow++) {
@@ -48,7 +52,7 @@ void ShipScene::createGrid() {
         }
     }
 }
-*/
+
 
 void ShipScene::createPlayer() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::PLAYER)); //texture for player
@@ -57,8 +61,8 @@ void ShipScene::createPlayer() {
 }
 
 void ShipScene::createShip() {
-    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::SHIP_BACKGROUND));
-    Ship* pShip = new Ship("Ship", pTexture);
+  //  AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::SHIP_BACKGROUND));
+    Ship* pShip = new Ship("Ship");
     this->registerObject(pShip);
 }
 

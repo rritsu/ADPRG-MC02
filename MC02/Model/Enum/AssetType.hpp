@@ -16,5 +16,6 @@ enum class AssetType : int {
     AIRHORN,
     TOY_CUBE,
     STOP_SIGN,
-    LARGE_AXLE
+    LARGE_AXLE.
+    DOOR
 };

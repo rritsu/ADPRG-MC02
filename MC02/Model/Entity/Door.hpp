@@ -1,30 +1,31 @@
 #pragma once
 
-#include "../../Config/Settings.hpp"
 #include "../GameObject.hpp"
-#include "../Component/Physics/Collider.hpp"
+#include "../Enum/DoorType.hpp"
 #include "../Interface/CollisionListener.hpp"
+#include "../Component/Physics/Collider.hpp"
 #include "../../Controller/Manager/PhysicsManager.hpp"
 
 namespace entities {
-    using namespace components;
+    using namespace models;
     using namespace interfaces;
+    using namespace components;
     using namespace managers;
 
-    class Border : public GameObject, public CollisionListener{
+    class Door : public GameObject, public CollisionListener {
         private:
-            sf::FloatRect CBounds;
+            sf::Vector2f vecPosition;
+            DoorType EType;
 
         public:
-            Border(std::string strName, sf::FloatRect CBounds);
+            Door(DoorType EType, std::string strName, AnimatedTexture* pTexture, sf::Vector2f vecPosition);
 
         public:
             void initialize();
             void onCollisionEnter(GameObject* pGameObject);
             void onCollisionExit(GameObject* pGameObject);
+            void setDoorFrame();
 
-        public:
-            sf::FloatRect getGlobalBounds();
-
+        
     };
 }

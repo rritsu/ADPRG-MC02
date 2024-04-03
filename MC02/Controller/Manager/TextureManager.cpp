@@ -3,11 +3,11 @@ using namespace managers;
 
 
 void TextureManager::loadMainMenu() {
-    /*
+    
     sf::Texture* pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/Space Impact/main_menu_background.png");
     this->mapTexture[AssetType::MAIN_MENU_BACKGROUND].push_back(pTexture);
-    */
+    
 
 }
 
@@ -46,11 +46,25 @@ void TextureManager::loadArea() {
     this->mapTexture[AssetType::AREA_TILE].push_back(pTexture);
     this->vecAssetTypes.push_back(AssetType::AREA_TILE);
 
-    this->loadPlayer();
+    //door
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Map/door-top.png");
+    this->mapTexture[AssetType::DOOR].push_back(pTexture);
+    
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Map/door-left.png");
+    this->mapTexture[AssetType::DOOR].push_back(pTexture);
 
-    //door grid
-   // pTexture = new sf::Texture();
-    //pTexture->loadFromFile("View/Image/Player/")
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Map/door-bottom.png");
+    this->mapTexture[AssetType::DOOR].push_back(pTexture);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Map/door-right.png");
+    this->mapTexture[AssetType::DOOR].push_back(pTexture);
+    this->vecAssetTypes.push_back(AssetType::DOOR);
+
+    this->loadPlayer();
 }
 
 void TextureManager::loadPlayer() {

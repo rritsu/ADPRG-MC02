@@ -10,7 +10,7 @@
 
 #include "../Model/Scene/MainMenuScene.hpp"
 #include "../Model/Scene/ShipScene.hpp"
-#include "../Model/Scene/AreaScene.hpp"
+#include "../Model/Scene/RoomScene.hpp"
 
 #include "../Config/Settings.hpp"
 

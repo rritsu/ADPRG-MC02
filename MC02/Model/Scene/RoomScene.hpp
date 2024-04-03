@@ -3,11 +3,16 @@
 #include "iostream"
 #include "../Scene.hpp"
 #include "../Enum/SceneTag.hpp"
+#include "../../Controller/Manager/RoomManager.hpp"
 #include "../../Controller/Manager/TextureManager.hpp"
 #include "../../Controller/Utility/Utility.hpp"
 #include "../AnimatedTexture.hpp"
 #include "../Entity/Tile.hpp"
 #include "../Entity/Player.hpp"
+#include "../Entity/Door.hpp"
+#include "../Entity/Room.hpp"
+#include "../Entity/Border.hpp"
+#include "../EmptyGameObject.hpp"
 #include "../../Config/Settings.hpp"
 
 namespace scenes {
@@ -16,14 +21,14 @@ namespace scenes {
     using namespace entities;
     using namespace models;
 
-    class AreaScene : public Scene {
+    class RoomScene : public Scene {
         private:
-            int nAreaIndex;
+            int nRoomIndex;
             int nConnectedIndex;
             int nBackIndex;
 
         public:
-            AreaScene(std::vector<int> vecArea, int nAreaIndex, int nBackIndex);
+            RoomScene(SceneTag ETag, int nRoomIndex);
 
         public:
             void onLoadResources();
@@ -31,10 +36,15 @@ namespace scenes {
             void onUnloadResources();
         
         private:
+            void createNullObjects();
             void createGrid();
+            void createBorders();
             void createPlayer();
+            void createDoors();
+            void checkAdjacentRooms(std::vector<Room*> vecRooms, std::vector<int>& vecAdjacent);
 
         public:
-            int getAreaIndex();
+            int getRoomIndex();
+
     };
 }

@@ -4,6 +4,10 @@ using namespace entities;
 
 Player::Player(std::string strName, AnimatedTexture* pTexture) : GameObject(strName, pTexture), CollisionListener(){
     this->CNormalColor = sf::Color(0, 0, 0, 255);
+    this->bTopBounds = false;
+    this->bLeftBounds = false;
+    this->bBottomBounds = false;
+    this->bRightBounds = false;
 }
 
 void Player::initialize() {
@@ -27,8 +31,50 @@ void Player::initialize() {
     pCollider->assignListener(this);
     this->attachComponent(pCollider);
     PhysicsManager::getInstance()->trackCollider(pCollider);
+
 }
 
-void Player::onCollisionEnter(GameObject* pGameObject) {}
+void Player::onCollisionEnter(GameObject* pGameObject) {
+    if(pGameObject->getName() == "Top Border") 
+        this->bTopBounds = true;
+    
 
-void Player::onCollisionExit(GameObject* pGameObject) {}
+    if(pGameObject->getName() == "Left Border")
+        this->bLeftBounds = true;
+
+    if(pGameObject->getName() == "Bottom Border")
+        this->bBottomBounds = true;
+
+    if(pGameObject->getName() == "Right Border")
+        this->bRightBounds = true;
+}
+
+void Player::onCollisionExit(GameObject* pGameObject) {
+    if(pGameObject->getName() == "Top Border")
+        this->bTopBounds = false;
+    
+    if(pGameObject->getName() == "Left Border")
+        this->bLeftBounds = false;
+    
+    if(pGameObject->getName() == "Bottom Border")
+        this->bBottomBounds = false;
+    
+    if(pGameObject->getName() == "Right Border")
+        this->bRightBounds = false;
+}
+
+bool Player::getTopBounds() {
+    return this->bTopBounds;
+}
+
+bool Player::getLeftBounds() {
+    return this->bLeftBounds;
+}
+
+bool Player::getBottomBounds() {
+    return this->bBottomBounds;
+}
+
+bool Player::getRightBounds() {
+    return this->bRightBounds;
+}
