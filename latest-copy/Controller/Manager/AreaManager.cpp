@@ -11,13 +11,13 @@ void AreaManager::generateArea() {
 
     RoomManager::getInstance()->generateRoomIndeces();
     std::cout << "create" << std::endl;
-    this->createScraps(0);
+        //this->createScraps(0);
         std::cout << "created" << std::endl;
   //  for(int i = 0; i < vecRooms.size(); i++) {
       //  int nRoomIndex = vecRooms[i]->getRoomIndex();
       //  Room* pRoom = RoomManager::getInstance()->findRoomByIndex(nRoomIndex);
 
-       ItemManager::getInstance()->generateScrap(0);
+       //ItemManager::getInstance()->generateScrap(0);
   //  }
 
     RoomManager::getInstance()->generateRooms();
@@ -31,6 +31,7 @@ void AreaManager::createScraps(int nRoomIndex) {
     GameObjectPool* pScrapPool = new GameObjectPool(PoolTag::SCRAP_POOL, 27, pScrap);
     pScrapPool->initialize();
     ObjectPoolManager::getInstance()->registerObjectPool(pScrapPool);
+    //ItemManager::getInstance()->generateScrap();
 }
 
 AreaManager* AreaManager::P_SHARED_INSTANCE = NULL;

@@ -10,14 +10,14 @@ void RoomScene::onLoadResources() {
 }
 
 void RoomScene::onLoadObjects() {
+     std::cout << "resources loaded now objects" << std::endl;
     this->createNullObjects();
-    
     this->createGrid();
     this->createDoors();
     this->createPlayer();
     this->createBorders();
+    this->createScraps();
    // this->referScraps();
-   //\\ this->createScraps();
 
 }
 
@@ -131,12 +131,15 @@ void RoomScene::createDoors() {
 
 //just tested smth w this
 void RoomScene::createScraps() {
-    TextureManager::getInstance()->loadScraps();
-    Scrap* pScrap = new Scrap("Scrap", NULL);
-    GameObjectPool* pScrapPool = new GameObjectPool(PoolTag::SCRAP_POOL, 27, pScrap);
-    pScrapPool->initialize();
-    ObjectPoolManager::getInstance()->registerObjectPool(pScrapPool);
-    ObjectPoolManager::getInstance()->getPool(PoolTag::SCRAP_POOL)->requestPoolableBatch(3);
+
+    ItemManager::getInstance()->initializeScrapPool(5);
+    std::vector<Scrap*> vecScraps = ItemManager::getInstance()->generateScrap();
+
+    for(Scrap* pScrap : vecScraps){
+        this->registerObject(pScrap);
+    }
+    //AreaManager::getInstance()->loadScraps();
+
 }
 
 void RoomScene::referScraps() {

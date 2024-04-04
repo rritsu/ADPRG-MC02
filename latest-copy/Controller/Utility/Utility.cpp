@@ -3,11 +3,10 @@
 using namespace utilities;
 
 int Utility::getRandomNumber(int nLowerbound, int nUpperbound) {
-   // srand(time(0));
-   // int nRet = rand() % (nUpperbound - nLowerbound + 1);
-    //std::cout << "nRet " << nRet << std::endl;
-    //return nRet;
-    return 0;
+   srand(time(0));
+   int nRet = rand() % (nUpperbound - nLowerbound + 1);
+    std::cout << "nRet " << nRet << std::endl;
+    return nRet;
 }
 
 void Utility::pushConnectedIndeces(std::vector<int>& vecIndex, int nIndex) {
