@@ -4,6 +4,7 @@ using namespace entities;
 
 Player::Player(std::string strName, AnimatedTexture* pTexture) : GameObject(strName, pTexture), CollisionListener(){
     this->CNormalColor = sf::Color(0, 0, 0, 255);
+    this->pItem = NULL;
     this->bTopBounds = false;
     this->bLeftBounds = false;
     this->bBottomBounds = false;
@@ -36,6 +37,8 @@ void Player::initialize() {
 
 void Player::onCollisionEnter(GameObject* pGameObject) {
     Border* pBorder = (Border*)pGameObject;
+    
+
     if(pBorder->getType() == BorderType::TOP) {
          this->bTopBounds = true;
     }
@@ -48,19 +51,10 @@ void Player::onCollisionEnter(GameObject* pGameObject) {
 
     if(pBorder->getType() == BorderType::RIGHT)
         this->bRightBounds = true;
-    /*
-    if(pBorder->getName() == "Top Border") 
-        this->bTopBounds = true;
 
-    if(pBorder->getName() == "Left Border")
-        this->bLeftBounds = true;
-
-    if(pBorder->getName() == "Bottom Border")
-        this->bBottomBounds = true;
-
-    if(pBorder->getName() == "Right Border")
-        this->bRightBounds = true;
-        */
+    if(pGameObject->getName() == "Scrap")
+        this->pItem = pGameObject;
+    
 }
 
 void Player::onCollisionExit(GameObject* pGameObject) {
@@ -78,6 +72,9 @@ void Player::onCollisionExit(GameObject* pGameObject) {
 
     if(pBorder->getType() == BorderType::RIGHT)
         this->bRightBounds = false;
+    
+    if(pGameObject->getName() == "Scrap")
+        this->pItem = NULL;
     /*
     if(pBorder->getName() == "Top Border")
         this->bTopBounds = false;
@@ -107,4 +104,8 @@ bool Player::getBottomBounds() {
 
 bool Player::getRightBounds() {
     return this->bRightBounds;
+}
+
+GameObject* Player::getItem() {
+    return this->pItem;
 }

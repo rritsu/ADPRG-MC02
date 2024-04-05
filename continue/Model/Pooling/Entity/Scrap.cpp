@@ -5,6 +5,7 @@ using namespace poolables;
 Scrap::Scrap(std::string strName, AnimatedTexture* pTexture) : PoolableObject(PoolTag::SCRAP_POOL, strName, pTexture) {
     this->nValue = 0;
     this->ETag = ScrapTag::NONE;
+    this->bInRange = false;
     this->bPickedup = false;
     this->vecPosition = new sf::Vector2f(0.0f, 0.0f);
     this->nRoomIndex = 0;
@@ -76,10 +77,34 @@ void Scrap::onRelease() {
 
 void Scrap::onCollisionEnter(GameObject* pGameObject) {
 
+    if(pGameObject->getName() == "Player") {
+        this->bInRange = true;
+    }
+
 }
 
 void Scrap::onCollisionExit(GameObject* pGameObject) {
 
+    if(pGameObject->getName() == "Player") {
+        this->bInRange = false;
+    }
+
+}
+
+void Scrap::onPickup(GameObject* pGameObject) {
+
+    this->bInRange = false;
+    Collider* pCollider = (Collider*)this->findComponentByName(this->strName + " Collider");
+    PhysicsManager::getInstance()->untrackCollider(pCollider);
+
+}
+
+void Scrap::onDrop(GameObject* pGameObject) {
+
+    this->bInRange = true;
+    this->getSprite()->setPosition(pGameObject->getSprite()->getPosition());
+    Collider* pCollider = (Collider*)this->findComponentByName(this->strName + " Collider");
+    PhysicsManager::getInstance()->trackCollider(pCollider);
 }
 
 PoolableObject* Scrap::clone() {
@@ -96,6 +121,10 @@ int Scrap::getValue() {
 
 ScrapTag Scrap::getTag() {
     return this->ETag;
+}
+
+bool Scrap::IsInRange(){
+    return this->bInRange;
 }
 
 void Scrap::setRoomIndex(int nRoomIndex) {

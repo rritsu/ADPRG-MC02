@@ -8,6 +8,7 @@ PlayerInput::PlayerInput(std::string strName) : GeneralInput(strName) {
     this->bLeft = false;
     this->bRight = false;
     this->bInteract = false;
+    this->bPickup = false;
 }
 
 void PlayerInput::perform() {
@@ -48,6 +49,7 @@ void PlayerInput::processKeyInput(bool bPressed) {
         case sf::Keyboard::E:
             this->bInteract = bPressed;
             break;
+        
 
         default:
             break;

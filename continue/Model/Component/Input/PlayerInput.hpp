@@ -10,6 +10,7 @@ namespace components {
             bool bLeft;
             bool bRight;
             bool bInteract;
+            bool bPickup;
             
         public:
             PlayerInput(std::string strName);

@@ -6,6 +6,7 @@
 #include "../PoolableObject.hpp"
 #include "../../Component/Physics/Collider.hpp"
 #include "../../Interface/CollisionListener.hpp"
+#include "../../Interface/IPickupable.hpp"
 #include "../../../Controller/Manager/PhysicsManager.hpp"
 
 namespace poolables {
@@ -15,10 +16,11 @@ namespace poolables {
     using namespace components;
     using namespace interfaces;
 
-    class Scrap : public PoolableObject, public CollisionListener {
+    class Scrap : public PoolableObject, public IPickupable, public CollisionListener {
         protected:
             ScrapTag ETag;
             int nValue;
+            bool bInRange;
             bool bPickedup;
             sf::Vector2f* vecPosition;
             int nRoomIndex;
@@ -32,10 +34,13 @@ namespace poolables {
             void onRelease();
             void onCollisionEnter(GameObject* pGameObject);
             void onCollisionExit(GameObject* pGameObject);
+            void onPickup(GameObject* pGameObject);
+            void onDrop(GameObject* pGameObject);
             PoolableObject* clone();
 
         public:
             int getValue();
+            bool IsInRange();
             ScrapTag getTag();
             void setRoomIndex(int nRoomIndex);
             

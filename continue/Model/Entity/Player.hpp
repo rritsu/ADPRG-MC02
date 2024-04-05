@@ -18,6 +18,7 @@ namespace entities {
     class Player : public GameObject, public CollisionListener {
         private:
             sf::Color CNormalColor;
+            GameObject* pItem;
             bool bTopBounds;
             bool bLeftBounds;
             bool bBottomBounds;
@@ -36,5 +37,6 @@ namespace entities {
             bool getLeftBounds();
             bool getBottomBounds();
             bool getRightBounds();
+            GameObject* getItem();
     };
 }

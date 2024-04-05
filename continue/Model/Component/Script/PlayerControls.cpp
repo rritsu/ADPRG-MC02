@@ -42,9 +42,21 @@ void PlayerControls::perform() {
             pPlayerInput->resetMovement();  
         }
 
+        else if(pPlayerInput->getInteract() && pPlayer->getItem() != NULL) {
+
+            if (pPlayer->getItem()->getName().find("Scrap") != std::string::npos){
+
+                Scrap* pScrap = (Scrap*)pPlayer->getItem();
+                pScrap->onPickup(this->getOwner());
+
+            }
+
+        }
+    }
+
       //  this->boundPlayer();
         
-    }
+    
 }
 
 void PlayerControls::boundPlayer() {
