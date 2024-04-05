@@ -24,7 +24,7 @@ namespace managers {
         public:
             void initializeScrapPool(int nLevelIndex);
             void clearScrapPool();
-            void generateScrap(int nAreaIndex);
+            std::vector<Scrap*> generateScrap();
             PoolableObject* getItemAtLocation(int nTileRowIndex, int nTileColumnIndex);
             std::vector<PoolableObject*> getItemsAtLocation(int nAreaIndex);
             void setItemAtLocation(int nAreaIndex, int nTileRowIndex, int nTileColumnIndex);

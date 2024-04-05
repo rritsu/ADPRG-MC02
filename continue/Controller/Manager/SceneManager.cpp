@@ -15,7 +15,9 @@ void SceneManager::loadScene(SceneTag ETag) {
 void SceneManager::unloadScene() {
     if(this->pActiveScene != NULL) {
         this->pActiveScene->onUnloadObjects();
+        std::cout << "UNLOAD RESOURCES" << std::endl;
         this->pActiveScene->onUnloadResources();
+        std::cout << "UNLOADED RESOURCES" << std::endl;
     }
 }
 

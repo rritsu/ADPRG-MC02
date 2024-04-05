@@ -11,14 +11,14 @@ void AreaManager::generateArea() {
 
  //  RoomManager::getInstance()->generateRoomIndeces();
     RoomManager::getInstance()->NEWgenerateRoomIndeces();
-    std::cout << "create" << std::endl;
-    this->createScraps(0);
-        std::cout << "created" << std::endl;
+  //  std::cout << "create" << std::endl;
+   // this->createScraps(0);
+    //    std::cout << "created" << std::endl;
   //  for(int i = 0; i < vecRooms.size(); i++) {
       //  int nRoomIndex = vecRooms[i]->getRoomIndex();
       //  Room* pRoom = RoomManager::getInstance()->findRoomByIndex(nRoomIndex);
 
-    //   ItemManager::getInstance()->generateScrap(0);
+    //ItemManager::getInstance()->generateScrap(0);
   //  }
     std::cout << "generate rooms" << std::endl;
     RoomManager::getInstance()->generateRooms();

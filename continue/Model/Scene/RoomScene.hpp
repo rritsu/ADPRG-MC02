@@ -5,6 +5,7 @@
 #include "../Enum/SceneTag.hpp"
 #include "../../Controller/Manager/RoomManager.hpp"
 #include "../../Controller/Manager/TextureManager.hpp"
+#include "../../Controller/Manager/ItemManager.hpp"
 #include "../../Controller/Utility/Utility.hpp"
 #include "../AnimatedTexture.hpp"
 #include "../Entity/Tile.hpp"

@@ -9,16 +9,15 @@ void RoomScene::onLoadResources() {
    TextureManager::getInstance()->loadArea();
 }
 
-//when player tries to get back to visited rooms, the program crashes when this function is called
+
 void RoomScene::onLoadObjects() {
     this->createNullObjects();
-    this->createRoom(); //HERE 
+    this->createRoom(); 
     this->createGrid();
+   // this->createScraps();   //COMMENTED OUT FOR NOW
     this->createDoors();
     this->createPlayer();
     this->createBorders();
-   // this->referScraps();
-   //\\ this->createScraps();
 }
 
 void RoomScene::createNullObjects() {
@@ -44,12 +43,12 @@ void RoomScene::createGrid() {
 
 void RoomScene::createRoom() {
     Room* pRoom = new Room("Room", NULL, this->nRoomIndex);
-    this->registerObject(pRoom);
-    //Room* pRoom = RoomManager::getInstance()->findRoomByIndex(this->nRoomIndex);
+   // this->registerObject(pRoom);
+   // Room* pRoom = RoomManager::getInstance()->findRoomByIndex(this->nRoomIndex);
     //std::cout << "called room" << std::endl;
     //Room* pRoom = (Room*)GameObjectManager::getInstance()->findObjectByName("Room " + std::to_string(this->nRoomIndex));
    // std::cout << "wala siya :(" << std::endl;
-   // this->registerObject(pRoom);
+    this->registerObject(pRoom);
 
 }
 
@@ -87,6 +86,10 @@ void RoomScene::createDoors() {
     std::cout << "CURRENT ROOM: " << this->nRoomIndex << std::endl;
    for(int x : vecAdjacent) 
         std::cout << "adj " << x << " "; 
+
+   // for(int i = 0; i < vecRooms.size(); i++) {
+    //    std::cout << "ROOM " << vecRooms[i]->getRoomIndex() << std::endl;
+   // }
     
 
     this->checkAdjacentRooms(vecRooms, vecAdjacent);
@@ -140,14 +143,15 @@ void RoomScene::createDoors() {
 
 }
 
-//just tested smth w this
 void RoomScene::createScraps() {
-    TextureManager::getInstance()->loadScraps();
-    Scrap* pScrap = new Scrap("Scrap", NULL);
-    GameObjectPool* pScrapPool = new GameObjectPool(PoolTag::SCRAP_POOL, 27, pScrap);
-    pScrapPool->initialize();
-    ObjectPoolManager::getInstance()->registerObjectPool(pScrapPool);
-    ObjectPoolManager::getInstance()->getPool(PoolTag::SCRAP_POOL)->requestPoolableBatch(3);
+
+    ItemManager::getInstance()->initializeScrapPool(5);
+    std::vector<Scrap*> vecScraps = ItemManager::getInstance()->generateScrap();
+
+    for(Scrap* pScrap : vecScraps){
+        this->registerObject(pScrap);
+    }
+    //AreaManager::getInstance()->loadScraps();
 }
 
 void RoomScene::referScraps() {

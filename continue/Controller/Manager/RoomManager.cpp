@@ -142,7 +142,7 @@ void RoomManager::NEWgenerateRoomIndeces() {
 void RoomManager::addRoom(Room* pRoom) {
     this->mapRooms[pRoom->getRoomIndex()] = pRoom;
     this->vecRooms.push_back(pRoom);
-    GameObjectManager::getInstance()->addObject(pRoom);
+   // GameObjectManager::getInstance()->addObject(pRoom);
  //   pRoom->initialize();
 }
 
