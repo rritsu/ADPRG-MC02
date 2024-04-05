@@ -31,16 +31,16 @@ void ShipScene::createNullObjects() {
 
 void ShipScene::createBorders() {
     sf::FloatRect CRect = sf::FloatRect(0.0f, 0.0f, SCREEN_WIDTH, 0.1f);
-    GameObjectManager::getInstance()->addObject(new Border(BorderType::TOP, "Top Border", CRect));
+    GameObjectManager::getInstance()->addObject(new Border("Top Border", CRect));
 
     CRect = sf::FloatRect(0.0f, 0.0f, 0.1f, SCREEN_HEIGHT);
-    GameObjectManager::getInstance()->addObject(new Border(BorderType::LEFT, "Left Border", CRect));
+    GameObjectManager::getInstance()->addObject(new Border("Left Border", CRect));
 
     CRect = sf::FloatRect(0.0f, SCREEN_HEIGHT, SCREEN_WIDTH, 0.1f);
-    GameObjectManager::getInstance()->addObject(new Border(BorderType::BOTTOM, "Bottom Border", CRect));
+    GameObjectManager::getInstance()->addObject(new Border("Bottom Border", CRect));
 
     CRect = sf::FloatRect(SCREEN_WIDTH - DISTANCE, 0.0f, 0.1f, SCREEN_HEIGHT);
-    GameObjectManager::getInstance()->addObject(new Border(BorderType::RIGHT, "Right Border", CRect));
+    GameObjectManager::getInstance()->addObject(new Border("Right Border", CRect));
 }
 
 void ShipScene::createGrid() {

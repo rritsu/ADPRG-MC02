@@ -16,7 +16,7 @@ namespace poolables {
     using namespace components;
     using namespace interfaces;
 
-    class Scrap : public PoolableObject, public IPickupable, public CollisionListener {
+    class Scrap : public PoolableObject, public IPickupable,  CollisionListener {
         protected:
             ScrapTag ETag;
             int nValue;

@@ -49,7 +49,6 @@ void PlayerInput::processKeyInput(bool bPressed) {
         case sf::Keyboard::E:
             this->bInteract = bPressed;
             break;
-        
 
         default:
             break;

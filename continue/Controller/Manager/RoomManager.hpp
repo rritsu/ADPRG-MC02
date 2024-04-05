@@ -25,8 +25,7 @@ namespace managers {
            // void initializeConnectedRooms();
             std::vector<int> getAdjacentRooms(int nRoomIndex);
             void generateRooms();
-          //  void generateRoomIndeces();
-            void NEWgenerateRoomIndeces();
+            void generateRoomIndeces();
             void addRoom(Room* pRoom);
             Room* findRoomByIndex(int nRoomIndex);
             void deleteAllRooms();

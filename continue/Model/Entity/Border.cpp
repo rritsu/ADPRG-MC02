@@ -2,9 +2,8 @@
 
 using namespace entities;
 
-Border::Border(BorderType EType, std::string strName, sf::FloatRect CBounds) : GameObject(strName, NULL) {
+Border::Border(std::string strName, sf::FloatRect CBounds) : GameObject(strName, NULL) {
     this->CBounds = CBounds;
-    this->EType = EType;
 }
 
 void Border::initialize() {
@@ -31,8 +30,4 @@ void Border::onCollisionExit(GameObject* pGameObject) {}
 
 sf::FloatRect Border::getGlobalBounds() {
     return this->CBounds;
-}
-
-BorderType Border::getType() {
-    return this->EType;
 }

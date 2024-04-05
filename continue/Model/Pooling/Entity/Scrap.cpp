@@ -59,6 +59,7 @@ void Scrap::initialize() {
     Collider* pCollider = new Collider(this->strName + " Collider");
     pCollider->assignListener(this);
     this->attachComponent(pCollider);
+    //PhysicsManager::getInstance()->trackCollider(pCollider);
 
 }
 
@@ -76,20 +77,18 @@ void Scrap::onRelease() {
 }
 
 void Scrap::onCollisionEnter(GameObject* pGameObject) {
-
     if(pGameObject->getName() == "Player") {
         this->bInRange = true;
+        std::cout << "scrap touch" << std::endl;
     }
-
 }
 
 void Scrap::onCollisionExit(GameObject* pGameObject) {
-
     if(pGameObject->getName() == "Player") {
         this->bInRange = false;
     }
-
 }
+
 
 void Scrap::onPickup(GameObject* pGameObject) {
 
@@ -106,6 +105,7 @@ void Scrap::onDrop(GameObject* pGameObject) {
     Collider* pCollider = (Collider*)this->findComponentByName(this->strName + " Collider");
     PhysicsManager::getInstance()->trackCollider(pCollider);
 }
+
 
 PoolableObject* Scrap::clone() {
 

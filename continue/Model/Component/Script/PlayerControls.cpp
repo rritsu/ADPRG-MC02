@@ -42,6 +42,7 @@ void PlayerControls::perform() {
             pPlayerInput->resetMovement();  
         }
 
+      //  this->boundPlayer();
         else if(pPlayerInput->getInteract() && pPlayer->getItem() != NULL) {
 
             if (pPlayer->getItem()->getName().find("Scrap") != std::string::npos){
@@ -52,11 +53,8 @@ void PlayerControls::perform() {
             }
 
         }
-    }
-
-      //  this->boundPlayer();
         
-    
+    }
 }
 
 void PlayerControls::boundPlayer() {

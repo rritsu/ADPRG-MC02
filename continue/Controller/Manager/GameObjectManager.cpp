@@ -54,18 +54,12 @@ void GameObjectManager::deleteObjectByName(std::string strName) {
 void GameObjectManager::deleteAllObjects() {
     std::vector<GameObject*> vecGameObjects = this->vecGameObjects;
 
-  //  std::cout << std::endl;
-  //  std::cout << "delete all objects, func at gameObjectManager" << std::endl;
     for(int i = 0; i < vecGameObjects.size(); i++) {
         delete this->vecGameObjects[i];
-      //  std::cout << vecGameObjects[i]->getName() << std::endl;
     }
 
     this->vecGameObjects.clear();
     this->mapGameObjects.clear();
-
-
-    
 }
 
 int GameObjectManager::getActiveObjectSize() {

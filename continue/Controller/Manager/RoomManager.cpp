@@ -12,50 +12,6 @@ void RoomManager::generateRooms() {
 
 /*
 void RoomManager::generateRoomIndeces() {
-    int nTempIndex = 0;
-    int nRoomIndex = 0;
-    int nPrevRoom = 0;
-
-//    this->initializeIndeces();
-    this->nNumRooms = this->getRandomNumber(4, 9-3);
-  //  this->nNumRooms = Utility::getInstance()->getRandomNumber(4, 9);
-    std::cout << nNumRooms << std::endl;
-    
-    while(this->nEntryRoom == 5) {
-        this->nEntryRoom = this->getRandomNumber(1, 9);
-     //  this->nEntryRoom = Utility::getInstance()->getRandomNumber(1, 9);
-    }
-    nRoomIndex = this->nEntryRoom;
-
-    //nvm its still buggy
-    for(int i = 1; i <= nNumRooms; i++) {
-        this->vecIndeces = this->getAdjacentRooms(nRoomIndex);
-        Room* pRoom = new Room("Room "+std::to_string(nRoomIndex), NULL, nRoomIndex);
-        SceneManager::getInstance()->registerScene(new RoomScene(this->getRoomTag(nRoomIndex), nRoomIndex));
-        this->addRoom(pRoom);
-        nPrevRoom = nRoomIndex;
-
-        do{
-            nTempIndex = this->getRandomNumber(0, this->vecIndeces.size());
-           //nTempIndex = Utility::getInstance()->getRandomNumber(0, this->vecIndeces.size());
-           // std::cout << "stuck" << std::endl;
-        }while(this->checkDuplicate(nTempIndex) || this->vecIndeces[nTempIndex] == 5);
-
-        std::cout << nRoomIndex << std::endl;
-
-        nRoomIndex = this->vecIndeces[nTempIndex];
-        this->clearIndeces();
-
-       // std::cout << "loop" << std::endl;
-    }
-
-    //checking
-    for(Room* pRoom : this->vecRooms) {
-        std::cout << "room " << pRoom->getRoomIndex() << std::endl;
-    }
-}*/
-
-void RoomManager::NEWgenerateRoomIndeces() {
     int nIndex = 0, nTempIndex = 0;
     std::vector<int> vecAdjacent = {};
     std::vector<int> vecRemove = {};
@@ -138,6 +94,94 @@ void RoomManager::NEWgenerateRoomIndeces() {
     //RNG for the entryRoom
     
 }
+*/
+
+void RoomManager::generateRoomIndeces() {
+    int nIndex = 0, nTempIndex = 0;
+    std::vector<int> vecAdjacent = {};
+    std::vector<int> vecRemove = {};
+
+    this->initializeIndeces();
+    
+    //rng how many rooms to be removed;
+
+    int nNumRemove = Utility::getInstance()->getRandomNumber(0, 5);
+    std::cout << "numRemove: " << nNumRemove << std::endl;
+
+    if(nNumRemove != 0) {
+        do{
+            nIndex = Utility::getInstance()->getRandomNumber(1, 10);
+        }while(nIndex == 0);
+    }
+    std::cout << "num index: " << nIndex << std::endl;
+
+
+    for(int i = 0; i < nNumRemove; i++) {
+        vecAdjacent = this->getAdjacentRooms(nIndex);   //get the adjacent rooms of nIndex
+      //  std::cout << "adj size: " << vecAdjacent.size() << std::endl;
+        vecRemove.push_back(nIndex);
+        do{
+            nTempIndex = this->getRandomNumber(0, vecAdjacent.size()-1);       //rng thru the index of the adjacent rooms to update nIndex
+          //  std::cout << "ntempIndex " << nTempIndex << std::endl;
+         }while(this->checkDuplicate(vecAdjacent[nTempIndex], vecRemove) || vecAdjacent[nTempIndex] == 5);
+
+     //   std::cout << "temp index: " << nTempIndex << std::endl;
+        nIndex = vecAdjacent[nTempIndex];
+        vecAdjacent.clear();
+    }
+
+    //
+
+    for(int i = 0; i < vecRemove.size(); i++) {
+        std::cout << "remove " << vecRemove[i] << std::endl; 
+    }
+
+    int k = 0;
+    bool bErase = false;
+    for(int i = 0; i < vecRemove.size(); i++) {
+        for(int j = 0; j < this->vecIndeces.size(); j++) {
+            if(vecRemove[i] == this->vecIndeces[j] && bErase == false) {
+                bErase = true;
+                k = j;
+            }
+        }
+        if(bErase == true) {
+            this->vecIndeces.erase(this->vecIndeces.begin() + k);
+        }
+
+        bErase = false;
+    }
+
+    std::cout << std::endl;
+    std::cout << "size " << this->vecIndeces.size() << std::endl;
+    for(int i = 0; i < this->vecIndeces.size(); i++) {
+        std::cout << "room " << this->vecIndeces[i] << std::endl;
+    }
+
+    for(int i = 0; i < this->vecIndeces.size(); i++) {
+        int nRoomIndex = this->vecIndeces[i];
+        Room* pRoom = new Room("Room "+std::to_string(nRoomIndex), NULL, nRoomIndex);
+        SceneManager::getInstance()->registerScene(new RoomScene(this->getRoomTag(nRoomIndex), nRoomIndex));
+        this->addRoom(pRoom);
+
+    }
+
+    do{
+        int nTempIndex = this->getRandomNumber(0, this->vecIndeces.size() - 1);
+    }while(this->vecIndeces[nTempIndex] == 5);
+
+    this->nEntryRoom = this->vecIndeces[nTempIndex];
+    //std::cout << "ENTRY ROOM"
+
+  //  for(int i = 0; i < this->vecIndeces.size(); i++) {
+    //    std::cout << "room " << this->vecIndeces[i] << std::endl; 
+   // }
+    //after getting vecremove. remove the values in vecIndeces that are included in vecRemove
+    //instantiate room
+    //RNG for the entryRoom
+    
+}
+
 
 void RoomManager::addRoom(Room* pRoom) {
     this->mapRooms[pRoom->getRoomIndex()] = pRoom;

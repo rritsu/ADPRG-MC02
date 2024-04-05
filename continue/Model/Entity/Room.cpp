@@ -40,16 +40,23 @@ void Room::assignDoors(int nAdjacentIndex) {
  //   for(int i = 0; i < vecAdjacent.size(); i++) {
         if(this->nRoomIndex == nAdjacentIndex + 3)
             this->bTopDoor = true;
-
+        else
+            this->bTopDoor = false;
         
         if(this->nRoomIndex == nAdjacentIndex + 1)
             this->bLeftDoor = true;
+        else
+            this->bLeftDoor = false;
         
         if(this->nRoomIndex == nAdjacentIndex - 3)
             this->bBottomDoor = true;
+        else
+            this->bBottomDoor = false;
 
         if(this->nRoomIndex == nAdjacentIndex - 1)
             this->bRightDoor = true;
+        else
+            this->bRightDoor = false;
   //  }
 }
 

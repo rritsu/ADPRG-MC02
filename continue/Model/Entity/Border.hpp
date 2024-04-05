@@ -5,7 +5,6 @@
 #include "../Component/Physics/Collider.hpp"
 #include "../Interface/CollisionListener.hpp"
 #include "../../Controller/Manager/PhysicsManager.hpp"
-#include "../Enum/BorderType.hpp"
 
 namespace entities {
     using namespace components;
@@ -15,10 +14,9 @@ namespace entities {
     class Border : public GameObject, public CollisionListener{
         private:
             sf::FloatRect CBounds;
-            BorderType EType;
 
         public:
-            Border(BorderType EType, std::string strName, sf::FloatRect CBounds);
+            Border(std::string strName, sf::FloatRect CBounds);
 
         public:
             void initialize();
@@ -27,7 +25,6 @@ namespace entities {
 
         public:
             sf::FloatRect getGlobalBounds();
-            BorderType getType();
 
     };
 }

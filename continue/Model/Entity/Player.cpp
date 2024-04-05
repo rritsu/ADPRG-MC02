@@ -36,30 +36,26 @@ void Player::initialize() {
 }
 
 void Player::onCollisionEnter(GameObject* pGameObject) {
-    Border* pBorder = (Border*)pGameObject;
-    
+    if(pGameObject->getName() == "Top Border") 
+        this->bTopBounds = true;
 
-    if(pBorder->getType() == BorderType::TOP) {
-         this->bTopBounds = true;
-    }
-
-    if(pBorder->getType() == BorderType::LEFT)
+    if(pGameObject->getName() == "Left Border")
         this->bLeftBounds = true;
 
-    if(pBorder->getType() == BorderType::BOTTOM)
+    if(pGameObject->getName() == "Bottom Border")
         this->bBottomBounds = true;
 
-    if(pBorder->getType() == BorderType::RIGHT)
+    if(pGameObject->getName() == "Right Border")
         this->bRightBounds = true;
+        
 
     if(pGameObject->getName() == "Scrap")
         this->pItem = pGameObject;
-    
 }
 
 void Player::onCollisionExit(GameObject* pGameObject) {
-    Border* pBorder = (Border*)pGameObject;
-
+  //  Border* pBorder = (Border*)pGameObject;
+/*
     if(pBorder->getType() == BorderType::TOP) {
          this->bTopBounds = false;
     }
@@ -72,22 +68,22 @@ void Player::onCollisionExit(GameObject* pGameObject) {
 
     if(pBorder->getType() == BorderType::RIGHT)
         this->bRightBounds = false;
-    
+*/
     if(pGameObject->getName() == "Scrap")
         this->pItem = NULL;
-    /*
-    if(pBorder->getName() == "Top Border")
+
+    if(pGameObject->getName() == "Top Border")
         this->bTopBounds = false;
     
-    if(pBorder->getName() == "Left Border")
+    if(pGameObject->getName() == "Left Border")
         this->bLeftBounds = false;
     
-    if(pBorder->getName() == "Bottom Border")
+    if(pGameObject->getName() == "Bottom Border")
         this->bBottomBounds = false;
     
-    if(pBorder->getName() == "Right Border")
+    if(pGameObject->getName() == "Right Border")
         this->bRightBounds = false;
-        */
+        
 }
 
 bool Player::getTopBounds() {

@@ -8,7 +8,7 @@ void ItemManager::initializeScrapPool(int nLevelIndex){ //(the level index is th
     std::cout << "Pool initialized " << std::endl;
     TextureManager::getInstance()->loadScraps();
     Scrap* pScrap = new Scrap("Scrap", NULL);
-    GameObjectPool* pScrapPool = new GameObjectPool(PoolTag::SCRAP_POOL, 27, pScrap);
+    GameObjectPool* pScrapPool = new GameObjectPool(PoolTag::SCRAP_POOL, 10, pScrap);
     pScrapPool->initialize();
     ObjectPoolManager::getInstance()->registerObjectPool(pScrapPool);
 

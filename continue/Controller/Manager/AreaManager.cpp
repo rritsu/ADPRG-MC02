@@ -10,22 +10,13 @@ void AreaManager::generateArea() {
     std::vector<Room*> vecRooms = RoomManager::getInstance()->getVecRooms();
 
  //  RoomManager::getInstance()->generateRoomIndeces();
-    RoomManager::getInstance()->NEWgenerateRoomIndeces();
-  //  std::cout << "create" << std::endl;
-   // this->createScraps(0);
-    //    std::cout << "created" << std::endl;
-  //  for(int i = 0; i < vecRooms.size(); i++) {
-      //  int nRoomIndex = vecRooms[i]->getRoomIndex();
-      //  Room* pRoom = RoomManager::getInstance()->findRoomByIndex(nRoomIndex);
-
-    //ItemManager::getInstance()->generateScrap(0);
-  //  }
+    RoomManager::getInstance()->generateRoomIndeces();
+ 
     std::cout << "generate rooms" << std::endl;
     RoomManager::getInstance()->generateRooms();
-
-    std::cout << "tapos" << std::endl;
 }
 
+/*
 void AreaManager::createScraps(int nRoomIndex) {
     TextureManager::getInstance()->loadScraps();
     Scrap* pScrap = new Scrap("Scrap", NULL);
@@ -33,6 +24,7 @@ void AreaManager::createScraps(int nRoomIndex) {
     pScrapPool->initialize();
     ObjectPoolManager::getInstance()->registerObjectPool(pScrapPool);
 }
+*/
 
 AreaManager* AreaManager::P_SHARED_INSTANCE = NULL;
 AreaManager::AreaManager() {

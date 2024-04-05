@@ -3,9 +3,10 @@
 using namespace utilities;
 
 int Utility::getRandomNumber(int nLowerbound, int nUpperbound) {
-   //srand(time(0));
-   int nRet = rand() % (nUpperbound - nLowerbound + 1);
-   // std::cout << "nRet " << nRet << std::endl;
+ //   srand(time(0));
+    int nRet = rand() % (nUpperbound - nLowerbound + 1);
+  //  int nRet = nLowerbound + rand() % nUpperbound;
+    //std::cout << "nRet " << nRet << std::endl;
     return nRet;
 }
 

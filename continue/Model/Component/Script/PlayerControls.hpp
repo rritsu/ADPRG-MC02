@@ -10,6 +10,7 @@
 #include "../../../Controller/Manager/ObjectPoolManager.hpp"
 #include "../../../Config/Settings.hpp"
 
+
 namespace components {
     using namespace managers;
     using namespace entities;
