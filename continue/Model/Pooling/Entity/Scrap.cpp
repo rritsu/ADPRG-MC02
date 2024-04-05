@@ -11,9 +11,68 @@ Scrap::Scrap(std::string strName, AnimatedTexture* pTexture) : PoolableObject(Po
     this->nRoomIndex = 0;
 }
 void Scrap::initialize() {
-    AnimatedTexture* pTexture = NULL;
-    int nRandom = Utility::getInstance()->getRandomNumber(0, 4);
+
     this->centerOrigin();
+
+    Renderer* pRenderer = new Renderer(this->strName + " Renderer");
+    pRenderer->assignDrawable(this->pSprite);
+    this->attachComponent(pRenderer);
+
+    Collider* pCollider = new Collider(this->strName + " Collider");
+    pCollider->assignListener(this);
+    this->attachComponent(pCollider);
+    //PhysicsManager::getInstance()->trackCollider(pCollider);
+
+}
+
+void Scrap::onActivate() {
+
+    Collider* pCollider = (Collider*)this->findComponentByName(this->strName + " Collider");
+    PhysicsManager::getInstance()->trackCollider(pCollider);
+    
+}
+
+void Scrap::onRelease() {
+    // Collider* pCollider = (Collider*)this->findComponentByName(this->strName + " Collider");
+    // PhysicsManager::getInstance()->untrackCollider(pCollider);
+
+
+}
+
+void Scrap::onCollisionEnter(GameObject* pGameObject) {
+    if(pGameObject->getName() == "Player") {
+        this->bInRange = true;
+        std::cout << "scrap touch" << std::endl;
+    }
+}
+
+void Scrap::onCollisionExit(GameObject* pGameObject) {
+    if(pGameObject->getName() == "Player") {
+        this->bInRange = false;
+    }
+}
+
+
+void Scrap::onPickup(GameObject* pGameObject) {
+
+    this->bInRange = false;
+    Collider* pCollider = (Collider*)this->findComponentByName(this->strName + " Collider");
+    PhysicsManager::getInstance()->untrackCollider(pCollider);
+
+}
+
+void Scrap::onDrop(GameObject* pGameObject) {
+
+    this->bInRange = true;
+    this->getSprite()->setPosition(pGameObject->getSprite()->getPosition());
+    Collider* pCollider = (Collider*)this->findComponentByName(this->strName + " Collider");
+    PhysicsManager::getInstance()->trackCollider(pCollider);
+}
+
+
+PoolableObject* Scrap::clone() {
+
+    int nRandom = Utility::getInstance()->getRandomNumber(0, 4);
 
     switch(nRandom){
         case 0:
@@ -52,65 +111,6 @@ void Scrap::initialize() {
             break;
     };
 
-    Renderer* pRenderer = new Renderer(this->strName + " Renderer");
-    pRenderer->assignDrawable(this->pSprite);
-    this->attachComponent(pRenderer);
-
-    Collider* pCollider = new Collider(this->strName + " Collider");
-    pCollider->assignListener(this);
-    this->attachComponent(pCollider);
-    //PhysicsManager::getInstance()->trackCollider(pCollider);
-
-}
-
-void Scrap::onActivate() {
-
-    Collider* pCollider = (Collider*)this->findComponentByName(this->strName + " Collider");
-    PhysicsManager::getInstance()->trackCollider(pCollider);
-    
-}
-
-void Scrap::onRelease() {
-    // Collider* pCollider = (Collider*)this->findComponentByName(this->strName + " Collider");
-    // PhysicsManager::getInstance()->untrackCollider(pCollider);
-    ObjectPoolManager::getInstance()->getPool(PoolTag::SCRAP_POOL)->releasePoolable(this);
-
-}
-
-void Scrap::onCollisionEnter(GameObject* pGameObject) {
-    if(pGameObject->getName() == "Player") {
-        this->bInRange = true;
-        std::cout << "scrap touch" << std::endl;
-    }
-}
-
-void Scrap::onCollisionExit(GameObject* pGameObject) {
-    if(pGameObject->getName() == "Player") {
-        this->bInRange = false;
-    }
-}
-
-
-void Scrap::onPickup(GameObject* pGameObject) {
-
-    this->bInRange = false;
-    Collider* pCollider = (Collider*)this->findComponentByName(this->strName + " Collider");
-    PhysicsManager::getInstance()->untrackCollider(pCollider);
-
-}
-
-void Scrap::onDrop(GameObject* pGameObject) {
-
-    this->bInRange = true;
-    this->getSprite()->setPosition(pGameObject->getSprite()->getPosition());
-    Collider* pCollider = (Collider*)this->findComponentByName(this->strName + " Collider");
-    PhysicsManager::getInstance()->trackCollider(pCollider);
-}
-
-
-PoolableObject* Scrap::clone() {
-
-    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::METAL_SHEET));
     PoolableObject* pScrap = new Scrap(this->strName, pTexture);
     return pScrap;  
 }

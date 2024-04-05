@@ -7,7 +7,32 @@ void ItemManager::initializeScrapPool(int nLevelIndex){ //(the level index is th
 
     std::cout << "Pool initialized " << std::endl;
     TextureManager::getInstance()->loadScraps();
-    Scrap* pScrap = new Scrap("Scrap", NULL);
+    int nRandom = Utility::getInstance()->getRandomNumber(1, 3);
+
+    AnimatedTexture* pTexture;
+     switch(nRandom){
+        case 0:
+            pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::METAL_SHEET));
+            break;
+
+        case 1:
+            pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::AIRHORN)); 
+            break;
+
+        case 2:
+            pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::STOP_SIGN));
+            break;
+
+        case 3:
+            pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::LARGE_AXLE));  
+            break;
+
+        case 4:
+            pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::TOY_CUBE));
+            break;
+    };
+
+    Scrap* pScrap = new Scrap("Scrap", new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::TOY_CUBE)));
     GameObjectPool* pScrapPool = new GameObjectPool(PoolTag::SCRAP_POOL, 10, pScrap);
     pScrapPool->initialize();
     ObjectPoolManager::getInstance()->registerObjectPool(pScrapPool);
@@ -22,7 +47,7 @@ void ItemManager::clearScrapPool(){
 std::vector<Scrap*> ItemManager::generateScrap(){
 
     GameObjectPool* pScrapPool = ObjectPoolManager::getInstance()->getPool(PoolTag::SCRAP_POOL);
-    std::vector<Scrap*> scrap = {};
+    std::vector<Scrap*> vecScrap = {};
 
     if(pScrapPool != NULL) {
 
@@ -38,31 +63,37 @@ std::vector<Scrap*> ItemManager::generateScrap(){
 
         while(nScraptoSpawn > 0){
 
-            Scrap* pScrap = (Scrap*)pScrapPool->requestPoolable();
             std::cout << "Scrap spawned" << std::endl;
             bIdentical = false;
-            if(pScrap != NULL) {
-
-                int nRandomX = Utility::getInstance()->getRandomNumber(2, GRID_WIDTH - 2);
-                int nRandomY = Utility::getInstance()->getRandomNumber(2, GRID_HEIGHT - 2);
-                pScrap->getSprite()->setPosition(nRandomX * 100, nRandomY * 100);
-                 std::cout << "Scrap generated at " << nRandomX << std::endl;
-                for(sf::Vector2f vecPosition : this->vecUsedPositions){
-                    if(pScrap->getSprite()->getPosition() == vecPosition){
+            int nRandomX = Utility::getInstance()->getRandomNumber(2, GRID_WIDTH - 2);
+            int nRandomY = Utility::getInstance()->getRandomNumber(2, GRID_HEIGHT - 2);
+            sf::Vector2f vecNewPosition = sf::Vector2f(nRandomX, nRandomY);
+            for(sf::Vector2f vecPosition : this->vecUsedPositions){
+                    if(vecNewPosition == vecPosition){
                             bIdentical = true;
                     }
-                }
+            }
 
-                if(bIdentical == false){
-                    this->vecUsedPositions.push_back(pScrap->getSprite()->getPosition());
-                    scrap.push_back(pScrap);
-                    nScraptoSpawn--;
+            if(bIdentical == false)
+            {
+                Scrap* pScrap = (Scrap*)pScrapPool->requestPoolable();
+
+                if(pScrap != NULL) {
+                
+                pScrap->getSprite()->setPosition(nRandomX * 100, nRandomY * 100);
+                 std::cout << "Scrap generated at " << nRandomX << std::endl;
+
+                    if(bIdentical == false){
+                        this->vecUsedPositions.push_back(pScrap->getSprite()->getPosition());
+                        vecScrap.push_back(pScrap);
+                        nScraptoSpawn--;
+                    }
                 }
             }
             
         }
 
-        return scrap;
+        return vecScrap;
     }
 
     else {
