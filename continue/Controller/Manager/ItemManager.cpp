@@ -7,31 +7,6 @@ void ItemManager::initializeScrapPool(int nLevelIndex){ //(the level index is th
 
     std::cout << "Pool initialized " << std::endl;
     TextureManager::getInstance()->loadScraps();
-    int nRandom = Utility::getInstance()->getRandomNumber(1, 3);
-
-    AnimatedTexture* pTexture;
-     switch(nRandom){
-        case 0:
-            pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::METAL_SHEET));
-            break;
-
-        case 1:
-            pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::AIRHORN)); 
-            break;
-
-        case 2:
-            pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::STOP_SIGN));
-            break;
-
-        case 3:
-            pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::LARGE_AXLE));  
-            break;
-
-        case 4:
-            pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::TOY_CUBE));
-            break;
-    };
-
     Scrap* pScrap = new Scrap("Scrap", new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::TOY_CUBE)));
     GameObjectPool* pScrapPool = new GameObjectPool(PoolTag::SCRAP_POOL, 10, pScrap);
     pScrapPool->initialize();
