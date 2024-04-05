@@ -28,6 +28,8 @@ void RoomScene::createNullObjects() {
 
 void RoomScene::onUnloadResources() {
     TextureManager::getInstance()->unloadAll();
+    ObjectPoolManager::getInstance()->unregisterObjectPool(ObjectPoolManager::getInstance()->getPool(PoolTag::SCRAP_POOL));
+    this->vecScraps.clear();
 }
 
 void RoomScene::createGrid() {
@@ -133,12 +135,10 @@ void RoomScene::createDoors() {
 
 //just tested smth w this
 void RoomScene::createScraps() {
-    ItemManager::getInstance()->initializeScrapPool(5);
-    std::vector<Scrap*> vecScraps = ItemManager::getInstance()->generateScrap();
 
-    for(Scrap* pScrap : vecScraps){
-        this->registerObject(pScrap);
-    }
+    ItemManager::getInstance()->initializeScrapPool(5);
+    this->vecScraps = ItemManager::getInstance()->generateScrap();
+
     //AreaManager::getInstance()->loadScraps();
 }
 

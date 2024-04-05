@@ -8,7 +8,6 @@ void AreaManager::generateArea() {
     //doors smth smth
     //enemies
     std::vector<Room*> vecRooms = RoomManager::getInstance()->getVecRooms();
-
  //  RoomManager::getInstance()->generateRoomIndeces();
     RoomManager::getInstance()->generateRoomIndeces();
  

@@ -8,6 +8,7 @@
 #include "../../Interface/CollisionListener.hpp"
 #include "../../Interface/IPickupable.hpp"
 #include "../../../Controller/Manager/PhysicsManager.hpp"
+#include "../../../Controller/Manager/ObjectPoolManager.hpp"
 
 namespace poolables {
     using namespace models;

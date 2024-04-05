@@ -29,6 +29,7 @@ namespace scenes {
             int nRoomIndex;
             int nConnectedIndex;
             int nBackIndex;
+            std::vector<Scrap*> vecScraps;
 
         public:
             RoomScene(SceneTag ETag, int nRoomIndex);

@@ -71,8 +71,9 @@ void Scrap::onActivate() {
 }
 
 void Scrap::onRelease() {
-    Collider* pCollider = (Collider*)this->findComponentByName(this->strName + " Collider");
-    PhysicsManager::getInstance()->untrackCollider(pCollider);
+    // Collider* pCollider = (Collider*)this->findComponentByName(this->strName + " Collider");
+    // PhysicsManager::getInstance()->untrackCollider(pCollider);
+    ObjectPoolManager::getInstance()->getPool(PoolTag::SCRAP_POOL)->releasePoolable(this);
 
 }
 

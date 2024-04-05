@@ -22,11 +22,17 @@ void ItemManager::clearScrapPool(){
 std::vector<Scrap*> ItemManager::generateScrap(){
 
     GameObjectPool* pScrapPool = ObjectPoolManager::getInstance()->getPool(PoolTag::SCRAP_POOL);
-    std::cout << "Pool recieved " << std::endl;
-    int nScraptoSpawn = Utility::getInstance()->getRandomNumber(1, 3);
-    bool bIdentical = false;
-
     std::vector<Scrap*> scrap = {};
+
+    if(pScrapPool != NULL) {
+
+        std::cout << "Pool recieved " << std::endl;
+
+    }
+
+    int nScraptoSpawn = Utility::getInstance()->getRandomNumber(1, 3);
+    std::cout << "Number of Spawn randomized " << std::endl;
+    bool bIdentical = false;
 
     if(nScraptoSpawn != 0){
 
@@ -42,7 +48,7 @@ std::vector<Scrap*> ItemManager::generateScrap(){
                 pScrap->getSprite()->setPosition(nRandomX * 100, nRandomY * 100);
                  std::cout << "Scrap generated at " << nRandomX << std::endl;
                 for(sf::Vector2f vecPosition : this->vecUsedPositions){
-                    if(pScrap->getSprite()->getPosition() != vecPosition){
+                    if(pScrap->getSprite()->getPosition() == vecPosition){
                             bIdentical = true;
                     }
                 }
