@@ -8,6 +8,7 @@ Room::Room(std::string strName, AnimatedTexture* pTexture, int nRoomIndex) : Gam
     this->bLeftDoor = false;
     this->bBottomDoor = false;
     this->bRightDoor = false;
+    this->bHasEntryDoor = false;
 }
 
 void Room::initialize() {
@@ -31,33 +32,25 @@ SceneTag Room::getTag() {
 }
 
 void Room::assignDoors(int nAdjacentIndex) {
+    if(this->nRoomIndex == nAdjacentIndex + 3)
+        this->bTopDoor = true;
+    else
+        this->bTopDoor = false;
+    
+    if(this->nRoomIndex == nAdjacentIndex + 1)
+        this->bLeftDoor = true;
+    else
+        this->bLeftDoor = false;
+    
+    if(this->nRoomIndex == nAdjacentIndex - 3)
+        this->bBottomDoor = true;
+    else
+        this->bBottomDoor = false;
 
-    //std::cout << "ASSIGN DOOR " << this->nRoomIndex << std::endl;
-//for(int x : vecAdjacent)
-    //   std::cout << "adj" << x << " ";
-
-
- //   for(int i = 0; i < vecAdjacent.size(); i++) {
-        if(this->nRoomIndex == nAdjacentIndex + 3)
-            this->bTopDoor = true;
-        else
-            this->bTopDoor = false;
-        
-        if(this->nRoomIndex == nAdjacentIndex + 1)
-            this->bLeftDoor = true;
-        else
-            this->bLeftDoor = false;
-        
-        if(this->nRoomIndex == nAdjacentIndex - 3)
-            this->bBottomDoor = true;
-        else
-            this->bBottomDoor = false;
-
-        if(this->nRoomIndex == nAdjacentIndex - 1)
-            this->bRightDoor = true;
-        else
-            this->bRightDoor = false;
-  //  }
+    if(this->nRoomIndex == nAdjacentIndex - 1)
+        this->bRightDoor = true;
+    else
+        this->bRightDoor = false;
 }
 
 bool Room::getTopDoor() {
@@ -74,4 +67,12 @@ bool Room::getBottomDoor() {
 
 bool Room::getRightDoor() {
     return this->bRightDoor;
+}
+
+bool Room::getHasEntryDoor() {
+    return this->bHasEntryDoor;
+}
+
+void Room::setHasEntryDoor(bool bHasEntryDoor) {
+    this->bHasEntryDoor = bHasEntryDoor;
 }

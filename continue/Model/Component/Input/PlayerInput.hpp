@@ -1,8 +1,11 @@
 #pragma once
 
 #include "../GeneralInput.hpp"
+#include "../../Entity/Door.hpp"
 
 namespace components {
+    using namespace entities;
+
     class PlayerInput : public GeneralInput {
         private:
             bool bUp;

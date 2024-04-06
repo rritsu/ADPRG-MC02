@@ -7,28 +7,26 @@ void AreaManager::generateArea() {
     //connection of rooms
     //doors smth smth
     //enemies
-    std::vector<Room*> vecRooms = RoomManager::getInstance()->getVecRooms();
- //  RoomManager::getInstance()->generateRoomIndeces();
-    RoomManager::getInstance()->generateRoomIndeces();
- 
+
     std::cout << "generate rooms" << std::endl;
     RoomManager::getInstance()->generateRooms();
+    int nEntryRoom = RoomManager::getInstance()->getEntryRoom();
+    SceneManager::getInstance()->loadScene(RoomManager::getInstance()->getRoomTag(nEntryRoom));
+
 }
 
-/*
-void AreaManager::createScraps(int nRoomIndex) {
-    TextureManager::getInstance()->loadScraps();
-    Scrap* pScrap = new Scrap("Scrap", NULL);
-    GameObjectPool* pScrapPool = new GameObjectPool(PoolTag::SCRAP_POOL, 27, pScrap);
-    pScrapPool->initialize();
-    ObjectPoolManager::getInstance()->registerObjectPool(pScrapPool);
+DoorType AreaManager::getDoorType() {
+    return this->EDoorType;
 }
-*/
+
+void AreaManager::setDoorType(DoorType EDoorType) {
+    this->EDoorType = EDoorType;
+}
 
 AreaManager* AreaManager::P_SHARED_INSTANCE = NULL;
 AreaManager::AreaManager() {
-    this->nNumRooms = 0;
-    this->nStartRoom = 5;
+    this->pPlayerHolder = NULL;
+    this->EDoorType = DoorType::NONE;
 }
 
 AreaManager::AreaManager(const AreaManager&) {}

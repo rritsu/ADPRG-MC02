@@ -15,7 +15,6 @@ namespace managers {
         private:
             int nNumRooms;
             int nEntryRoom;
-          //  int nPrevRoom;
             int nCurrentRoom;
             std::vector<int> vecIndeces;
             std::vector<Room*> vecRooms;
@@ -29,18 +28,24 @@ namespace managers {
             void addRoom(Room* pRoom);
             Room* findRoomByIndex(int nRoomIndex);
             void deleteAllRooms();
+            std::string determineEntryDoor(int nRoomIndex);
 
         private:
             void initializeIndeces();
+            std::vector<int> initializeRemove();
+            void removeIndeces(std::vector<int> vecRemove);
+            void instantiateRooms();
             void clearIndeces();
             int getRandomNumber(int nLowerbound, int nUpperbound);
-            bool checkDuplicate(int nIndex);
+         //   bool checkDuplicate(int nIndex);
             bool checkDuplicate (int nNum, std::vector<int> vecIndeces);
           //  std::vector<int> getAdjacentRooms(int nRoom); 
 
         public:
             std::vector<Room*> getVecRooms();
             SceneTag getRoomTag(int nIndex);
+            int getEntryRoom();
+           // SceneTag getEntryRoomTag();
             int getCurrentRoom();
             void setCurrentRoom(int nCurrentRoom);
 

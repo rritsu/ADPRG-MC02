@@ -7,7 +7,10 @@
 #include "../Component/Physics/Collider.hpp"
 #include "../Interface/CollisionListener.hpp"
 #include "../../Controller/Manager/PhysicsManager.hpp"
+#include "../../Controller/Manager/AreaManager.hpp"
 #include "../Entity/Border.hpp"
+#include "../Entity/Door.hpp"
+#include "../Enum/DoorType.hpp"
 
 namespace entities {
     using namespace entities;
@@ -23,6 +26,7 @@ namespace entities {
             bool bLeftBounds;
             bool bBottomBounds;
             bool bRightBounds;
+            bool bEnteredDoor;
 
         public:
             Player(std::string strName, AnimatedTexture* pTexture);
@@ -32,11 +36,16 @@ namespace entities {
             void onCollisionEnter(GameObject* pGameObject);
             void onCollisionExit(GameObject* pGameObject);
 
+        private:
+            void initializePosition();
+
         public:
             bool getTopBounds();
             bool getLeftBounds();
             bool getBottomBounds();
             bool getRightBounds();
             GameObject* getItem();
+            bool getEnteredDoor();
+            void setEnteredDoor(bool bEnteredDoor);
     };
 }

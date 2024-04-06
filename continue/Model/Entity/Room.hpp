@@ -21,6 +21,7 @@ namespace entities {
             bool bLeftDoor;
             bool bBottomDoor;
             bool bRightDoor;
+            bool bHasEntryDoor;
         
         public:
             Room(std::string strName, AnimatedTexture* pTexture, int nRoomIndex);
@@ -36,6 +37,8 @@ namespace entities {
             bool getLeftDoor();
             bool getBottomDoor();
             bool getRightDoor();
+            bool getHasEntryDoor();
+            void setHasEntryDoor(bool bHasEntryDoor);
     };
 
 }

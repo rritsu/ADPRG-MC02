@@ -2,10 +2,11 @@
 
 #include "../Utility/Utility.hpp"
 #include "RoomManager.hpp"
-#include "ItemManager.hpp"
-#include "../../Model/Entity/Room.hpp"
-#include "../../Model/Pooling/Entity/Scrap.hpp"
-#include "../Pooling/GameObjectPool.hpp"
+#include "SceneManager.hpp"
+#include "TextureManager.hpp"
+#include "GameObjectManager.hpp"
+#include "../../Model/Entity/Player.hpp"
+#include "../../Model/Enum/DoorType.hpp"
 
 namespace managers {
     using namespace utilities;
@@ -14,14 +15,15 @@ namespace managers {
 
     class AreaManager {
         private:
-            int nNumRooms;
-            int nStartRoom;
+            Player* pPlayerHolder;
+            DoorType EDoorType;
 
         public:
             void generateArea();
 
-        private:
-            void createScraps(int nRoomIndex);
+        public:
+            DoorType getDoorType();
+            void setDoorType(DoorType EType);
             
 
         private:

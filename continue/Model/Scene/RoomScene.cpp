@@ -9,15 +9,16 @@ void RoomScene::onLoadResources() {
    TextureManager::getInstance()->loadArea();
 }
 
-//when player tries to get back to visited rooms, the program crashes when this function is called
 void RoomScene::onLoadObjects() {
     this->createNullObjects();
-    this->createRoom(); //HERE 
+
     this->createGrid();
     this->createDoors();
+    this->createEntryDoor();
     this->createPlayer();
     this->createBorders();
     this->createScraps();
+    this->createRoom(); 
 }
 
 void RoomScene::createNullObjects() {
@@ -44,6 +45,7 @@ void RoomScene::createGrid() {
 
 void RoomScene::createRoom() {
     Room* pRoom = new Room("Room", NULL, this->nRoomIndex);
+//  pRoom = RoomManager::getInstance()->findRoomByIndex(this->nRoomIndex);
     this->registerObject(pRoom);
 }
 
@@ -69,6 +71,40 @@ void RoomScene::createPlayer() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::PLAYER));
     Player* pPlayer = new Player("Player", pTexture);
     this->registerObject(pPlayer);
+    
+  //  this->registerObject( AreaManager::getInstance()->getPlayer());
+
+}
+
+void RoomScene::createEntryDoor() {
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::ENTRY_DOOR));
+    Room* pRoom = RoomManager::getInstance()->findRoomByIndex(this->nRoomIndex);
+    DoorType EType = DoorType::NONE;
+
+    if(pRoom->getHasEntryDoor()) {
+        std::string sDoor = RoomManager::getInstance()->determineEntryDoor(this->nRoomIndex);
+
+        if(sDoor == "Top Entry Door") {
+            EType = DoorType::ENTRY_TOP;
+        }
+        
+        else if(sDoor == "Left Entry Door") {
+            EType = DoorType::ENTRY_LEFT;
+        }
+
+        else if(sDoor == "Bottom Entry Door") {
+            EType = DoorType::ENTRY_BOTTOM;
+        }
+
+        else if(sDoor == "Right Entry Door") {
+            EType = DoorType::ENTRY_RIGHT;
+        }
+
+        Door* pDoor = new Door(EType, "Entry Door", pTexture);
+//        AreaManager::getInstance()->setDoorType(EType);
+     //   std::cout << " SET ENTRY DOOR " << std::endl;
+        this->registerObject(pDoor);
+    }
 }
 
 void RoomScene::createDoors() {
@@ -86,7 +122,7 @@ void RoomScene::createDoors() {
 
   //  vecAdjacent = this->checkAdjacentRoomsNEW(vecRooms, vecAdjacent);
     //this->checkAdjacentRooms(vecRooms, vecAdjacent);
-    this->checkAdjacentRoomsNEW(vecAdjacent);
+    this->checkAdjacentRooms(vecAdjacent);
 
    // for(int x : vecAdjacent) 
      //   std::cout << "after " << x << " ";
@@ -98,34 +134,30 @@ void RoomScene::createDoors() {
         pRoom->assignDoors(vecAdjacent[i]);
 
         if(pRoom->getTopDoor() && bSpawned[0] == false) {
-            sf::Vector2f vecPosition = sf::Vector2f(600.0f, 0.0f);
-            Door* pDoor = new Door(DoorType::TOP, "Top Door", pTexture, vecPosition);
+            Door* pDoor = new Door(DoorType::TOP, "Top Door", pTexture);
             this->registerObject(pDoor);
-            std::cout << "top door" << std::endl;
+        //    std::cout << "top door" << std::endl;
             bSpawned[0] = true;
         }
 
         if(pRoom->getLeftDoor() && bSpawned[1] == false) {
-            sf::Vector2f vecPosition = sf::Vector2f(0.0f, 300.0f);
-            Door* pDoor = new Door(DoorType::LEFT, "Left Door", pTexture, vecPosition);
+            Door* pDoor = new Door(DoorType::LEFT, "Left Door", pTexture);
             this->registerObject(pDoor);
-            std::cout << "left door" << std::endl;
+        //    std::cout << "left door" << std::endl;
             bSpawned[1] = true;
         }
 
         if(pRoom->getBottomDoor() && bSpawned[2] == false) {
-            sf::Vector2f vecPosition = sf::Vector2f(600.0f, 600.0f);
-            Door* pDoor = new Door(DoorType::BOTTOM, "Bottom Door", pTexture, vecPosition);
+            Door* pDoor = new Door(DoorType::BOTTOM, "Bottom Door", pTexture);
             this->registerObject(pDoor);
-            std::cout << "bottom door" << std::endl;
+          //  std::cout << "bottom door" << std::endl;
             bSpawned[2] = true;
         }
 
         if(pRoom->getRightDoor() && bSpawned[3] == false) {
-            sf::Vector2f vecPosition = sf::Vector2f(1100.0f, 300.0f);
-            Door* pDoor = new Door(DoorType::RIGHT, "Right Door", pTexture, vecPosition);
+            Door* pDoor = new Door(DoorType::RIGHT, "Right Door", pTexture);
             this->registerObject(pDoor);
-            std::cout << "right door" << std::endl;
+       //     std::cout << "right door" << std::endl;
             bSpawned[3] = true;
         }
     }
@@ -141,7 +173,7 @@ void RoomScene::createScraps() {
     //AreaManager::getInstance()->loadScraps();
 }
 
-void RoomScene::checkAdjacentRoomsNEW(std::vector<int>& vecAdjacent) {
+void RoomScene::checkAdjacentRooms(std::vector<int>& vecAdjacent) {
     std::vector<Room*> vecRooms = RoomManager::getInstance()->getVecRooms();
     bool bFound = false;
     int size = vecAdjacent.size();

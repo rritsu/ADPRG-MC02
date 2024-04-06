@@ -46,8 +46,26 @@ void TextureManager::loadArea() {
     this->mapTexture[AssetType::AREA_TILE].push_back(pTexture);
     this->vecAssetTypes.push_back(AssetType::AREA_TILE);
 
-    //door
+    this->loadDoors();
+    this->loadEntryDoors();
+
+    this->loadPlayer();
+}
+
+void TextureManager::loadPlayer() {
+    sf::Texture* pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Player/right.png");
+    this->mapTexture[AssetType::PLAYER].push_back(pTexture);
+
     pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Player/left.png");
+    this->mapTexture[AssetType::PLAYER].push_back(pTexture);
+
+    this->vecAssetTypes.push_back(AssetType::PLAYER);
+}
+
+void TextureManager::loadDoors() {
+    sf::Texture* pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/Map/door-top.png");
     this->mapTexture[AssetType::DOOR].push_back(pTexture);
     
@@ -63,20 +81,25 @@ void TextureManager::loadArea() {
     pTexture->loadFromFile("View/Image/Map/door-right.png");
     this->mapTexture[AssetType::DOOR].push_back(pTexture);
     this->vecAssetTypes.push_back(AssetType::DOOR);
-
-    this->loadPlayer();
 }
 
-void TextureManager::loadPlayer() {
+void TextureManager::loadEntryDoors() {
     sf::Texture* pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Player/right.png");
-    this->mapTexture[AssetType::PLAYER].push_back(pTexture);
+    pTexture->loadFromFile("View/Image/Map/entry-door-top.png");
+    this->mapTexture[AssetType::ENTRY_DOOR].push_back(pTexture);
 
     pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Player/left.png");
-    this->mapTexture[AssetType::PLAYER].push_back(pTexture);
+    pTexture->loadFromFile("View/Image/Map/entry-door-left.png");
+    this->mapTexture[AssetType::ENTRY_DOOR].push_back(pTexture);
 
-    this->vecAssetTypes.push_back(AssetType::PLAYER);
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Map/entry-door-bottom.png");
+    this->mapTexture[AssetType::ENTRY_DOOR].push_back(pTexture);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Map/entry-door-right.png");
+    this->mapTexture[AssetType::ENTRY_DOOR].push_back(pTexture);
+    this->vecAssetTypes.push_back(AssetType::ENTRY_DOOR);
 }
 
 void TextureManager::loadScraps() {

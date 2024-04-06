@@ -24,6 +24,7 @@ void ShipScript::perform() {
                 //start day wowowowowo
              //   SceneManager::getInstance()->loadScene(SceneTag::MAIN_MENU_SCENE);
                 AreaManager::getInstance()->generateArea();
+              //  AreaManager::getInstance()->setDoorType(DoorType::PORTAL);
             }
         }
 

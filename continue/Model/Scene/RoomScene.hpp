@@ -5,6 +5,7 @@
 #include "../Enum/SceneTag.hpp"
 #include "../../Controller/Manager/RoomManager.hpp"
 #include "../../Controller/Manager/TextureManager.hpp"
+#include "../../Controller/Manager/AreaManager.hpp"
 //#include "../../Controller/Manager/ItemManager.hpp"
 #include "../../Controller/Utility/Utility.hpp"
 #include "../AnimatedTexture.hpp"
@@ -45,9 +46,10 @@ namespace scenes {
             void createGrid();
             void createBorders();
             void createPlayer();
+            void createEntryDoor();
             void createDoors();
             void createScraps();
-            void checkAdjacentRoomsNEW(std::vector<int>& vecAdjacent);
+            void checkAdjacentRooms(std::vector<int>& vecAdjacent);
 
         public:
             int getRoomIndex();

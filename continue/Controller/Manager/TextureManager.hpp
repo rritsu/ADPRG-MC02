@@ -20,13 +20,15 @@ namespace managers {
             void loadShip();
             void loadArea();
             void loadScraps();
+            void loadPlayer();
             std::vector<sf::Texture*> getTexture(AssetType EType);
             sf::Texture* getTextureAt(AssetType EType, int nFrame);
             void unloadAll();
         
         
         private:
-            void loadPlayer();
+            void loadDoors();
+            void loadEntryDoors();
 
         private:
             static TextureManager* P_SHARED_INSTANCE;

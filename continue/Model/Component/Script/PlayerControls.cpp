@@ -42,7 +42,6 @@ void PlayerControls::perform() {
             pPlayerInput->resetMovement();  
         }
 
-      //  this->boundPlayer();
         else if(pPlayerInput->getInteract() && pPlayer->getItem() != NULL) {
 
             if (pPlayer->getItem()->getName().find("Scrap") != std::string::npos){
@@ -54,25 +53,5 @@ void PlayerControls::perform() {
 
         }
         
-    }
-}
-
-void PlayerControls::boundPlayer() {
-    sf::Sprite* pSprite = this->getOwner()->getSprite();
-
-    if(this->fX >= SCREEN_WIDTH) {
-        pSprite->setPosition(SCREEN_WIDTH - 100.0F, this->fY);
-    }
-
-    if(this->fX < 0.0f) {
-        pSprite->setPosition(0.0f, this->fY);
-    }
-
-    if(this->fY >= SCREEN_HEIGHT) {
-        pSprite->setPosition(this->fX, SCREEN_HEIGHT - 100.0f);
-    }
-
-    if(this->fY < 0.0f) {
-        pSprite->setPosition(this->fX, 0.0f);
     }
 }

@@ -17,17 +17,23 @@ namespace entities {
             sf::Vector2f vecPosition;
             DoorType EType;
             bool bPlayerCollision;
+            bool bEntryDoor;
+           // std::unordered_map<DoorType, sf::Vector2f> mapDoors; 
 
         public:
-            Door(DoorType EType, std::string strName, AnimatedTexture* pTexture, sf::Vector2f vecPosition);
+            Door(DoorType EType, std::string strName, AnimatedTexture* pTexture);
 
         public:
             void initialize();
+            void initializePosition();
             void onCollisionEnter(GameObject* pGameObject);
             void onCollisionExit(GameObject* pGameObject);
-            void setDoorFrame();
+            
+        public:
+            sf::Vector2f getPostition();
             bool getPlayerCollision();
+            DoorType getType();
+            bool getEntryDoor();
 
-        
     };
 }

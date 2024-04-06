@@ -13,7 +13,7 @@
 
 namespace components {
     using namespace managers;
-    using namespace entities;
+   // using namespace entities;
     using namespace poolables;
 
     class PlayerControls : public Component {
@@ -26,9 +26,5 @@ namespace components {
 
         public:
             void perform();
-
-        private:
-            void boundPlayer();
-            bool isAtBoundaries();
     };
 }
