@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include "unordered_map"
@@ -14,30 +13,33 @@ namespace managers {
     using namespace utilities;
     using namespace poolables;
 
-    class ItemManager {
+    class InventoryManager {
         private:
-            std::unordered_map<int, std::vector<sf::Vector2f>> vecUsedLocations;
-            std::unordered_map<int, std::vector<ScrapTag>> vecItemTypes;
-            std::vector<int> vecSpawnedIndices; 
+            std::vector<Scrap*> vecPlayerScraps;
+            //std::vector<Item*> boughtItems;
+            int nPlayerInventorySize;
 
         public:
-            void initializeScrapPool();
-            void clearMaps();
-            std::vector<Scrap*> generateScrap(int nRoomIndex);
+
+
+        public:
+            void initializeScrapPool(int nLevelIndex);
+            void clearScrapPool();
+            std::vector<Scrap*> generateScrap();
             PoolableObject* getItemAtLocation(int nTileRowIndex, int nTileColumnIndex);
             std::vector<PoolableObject*> getItemsAtLocation(int nAreaIndex);
             void setItemAtLocation(int nAreaIndex, int nTileRowIndex, int nTileColumnIndex);
 
         private:
-            static ItemManager* P_SHARED_INSTANCE;
+            static InventoryManager* P_SHARED_INSTANCE;
         
         private:
-            ItemManager();
-            ItemManager(const  ItemManager&);
-             ItemManager& operator = (const  ItemManager&);
+             InventoryManager();
+             InventoryManager(const InventoryManager&);
+             InventoryManager& operator = (const InventoryManager&);
         
         public:
-            static  ItemManager* getInstance();
+            static InventoryManager* getInstance();
         
     };
 }

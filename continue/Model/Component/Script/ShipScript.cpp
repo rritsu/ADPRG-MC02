@@ -7,6 +7,7 @@ void ShipScript::perform() {
     ShipInput* pInput = (ShipInput*)this->getOwner()->findComponentByName(this->getOwner()->getName() + " Input");
     Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player");
     ShipObject* pPortal = (ShipObject*)GameObjectManager::getInstance()->findObjectByName("Portal");
+    ShipObject* pLaptop = (ShipObject*)GameObjectManager::getInstance()->findObjectByName("Laptop");
 
     if(pInput == NULL) {
         std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
@@ -14,7 +15,7 @@ void ShipScript::perform() {
 
     else {
         this->applyShade(pPortal);
-
+        this->applyShade(pLaptop);
 
         if(pInput->getInteract()) {
             pInput->resetInteract();
@@ -25,6 +26,10 @@ void ShipScript::perform() {
              //   SceneManager::getInstance()->loadScene(SceneTag::MAIN_MENU_SCENE);
                 AreaManager::getInstance()->generateArea();
               //  AreaManager::getInstance()->setDoorType(DoorType::PORTAL);
+            }
+
+            if(pLaptop->getPlayerCollision()){
+                SceneManager::getInstance()->loadScene(SceneTag::LAPTOP_SCENE);
             }
         }
 

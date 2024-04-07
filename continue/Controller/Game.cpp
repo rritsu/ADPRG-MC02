@@ -8,10 +8,12 @@ Game::Game() : CWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Hello") {
     vecArea.push_back(2);
     vecArea.push_back(4);
     
-  //  SceneManager::getInstance()->registerScene(new MainMenuScene());
+    SceneManager::getInstance()->registerScene(new MainMenuScene());
+    SceneManager::getInstance()->registerScene(new LaptopScene());
     SceneManager::getInstance()->registerScene(new ShipScene());
    // SceneManager::getInstance()->registerScene(new AreaScene(vecArea , 1, 0));
-    SceneManager::getInstance()->loadScene(SceneTag::SHIP_SCENE);
+    SceneManager::getInstance()->loadScene(SceneTag::MAIN_MENU_SCENE);
+    //SceneManager::getInstance()->loadScene(SceneTag::SHIP_SCENE);
     
 }
 

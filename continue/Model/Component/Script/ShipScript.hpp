@@ -10,6 +10,7 @@
 #include "../../../Controller/Manager/GameObjectManager.hpp" 
 #include "../../../Controller/Manager/SceneManager.hpp" 
 #include "../../../Controller/Manager/AreaManager.hpp" 
+#include "../../../Controller/Manager/LevelManager.hpp" 
 #include "../../../Config/Theme.hpp"
 
 

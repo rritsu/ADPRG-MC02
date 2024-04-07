@@ -266,6 +266,7 @@ RoomManager::RoomManager() {
   //  this->nCurrentRoom = 0;
     this->vecRooms = {};
     this->vecIndeces = {};
+    this->bGenerated = false;
 }
 RoomManager::RoomManager(const RoomManager&) {}
 

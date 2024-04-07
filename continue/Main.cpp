@@ -10,11 +10,10 @@
 #include "Controller/Manager/RoomManager.cpp"
 #include "Controller/Manager/TextureManager.cpp"
 #include "Controller/Manager/SceneManager.cpp"
-//#include "Controller/Manager/SFXManager.cpp"
 #include "Controller/Manager/AreaManager.cpp"
 #include "Controller/Manager/PhysicsManager.cpp"
 #include "Controller/Manager/ItemManager.cpp"
-
+#include "Controller/Manager/LevelManager.cpp"
 #include "Controller/Utility/Utility.cpp"
 
 #include "Controller/Pooling/GameObjectPool.cpp"
@@ -28,15 +27,19 @@
 #include "Model/Component/Input/ShipInput.cpp"
 #include "Model/Component/Input/PlayerInput.cpp"
 #include "Model/Component/Input/RoomInput.cpp"
+#include "Model/Component/Input/LaptopBackgroundInput.cpp"
 #include "Model/Component/Renderer/Renderer.cpp"
+#include "Model/Component/Script/LaptopBackgroundAction.cpp"
 #include "Model/Component/Script/BackgroundAction.cpp"
 #include "Model/Component/Script/ShipScript.cpp"
 #include "Model/Component/Script/RoomScript.cpp"
+
 
 #include "Model/Component/Script/PlayerControls.cpp"
 #include "Model/Component/Physics/Collider.cpp"
 
 #include "Model/Entity/Background.cpp"
+#include "Model/Entity/LaptopBackground.cpp"
 #include "Model/Entity/Border.cpp"
 #include "Model/Entity/Player.cpp"
 #include "Model/Entity/ShipObject.cpp"
@@ -56,6 +59,7 @@
 #include "Model/Scene/MainMenuScene.cpp"
 #include "Model/Scene/ShipScene.cpp"
 #include "Model/Scene/RoomScene.cpp"
+#include "Model/Scene/LaptopScene.cpp"
 
 #include "Model/AnimatedTexture.cpp"
 #include "Model/EmptyGameObject.cpp"

@@ -13,6 +13,7 @@ namespace managers {
 
     class RoomManager {
         private:
+            bool bGenerated;
             int nNumRooms;
             int nEntryRoom;
             int nCurrentRoom;

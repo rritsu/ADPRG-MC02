@@ -11,13 +11,8 @@ void BackgroundAction::perform() {
         std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
     }
     else {
-        if(pInput->getMainMenuScene() && !SceneManager::getInstance()->getLoaded(SceneTag::GAME_SCENE)) {
-            SceneManager::getInstance()->loadScene(SceneTag::GAME_SCENE);
+        if(pInput->getMainMenuScene() && !SceneManager::getInstance()->getLoaded(SceneTag::SHIP_SCENE)) {
+            SceneManager::getInstance()->loadScene(SceneTag::SHIP_SCENE);
         }
-
-        if(pInput->getGameScene() && !SceneManager::getInstance()->getLoaded(SceneTag::MAIN_MENU_SCENE)) {
-            SceneManager::getInstance()->loadScene(SceneTag::MAIN_MENU_SCENE);
-        }
-        
     }   
 }

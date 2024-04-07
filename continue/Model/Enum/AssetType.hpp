@@ -6,6 +6,7 @@ enum class AssetType : int {
     NONE = -1,
     PLAYER,
     MAIN_MENU_BACKGROUND,
+    LAPTOP_BACKGROUND,
     SHIP_BACKGROUND,
     GAME_BACKGROUND,
     LAPTOP,

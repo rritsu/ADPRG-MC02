@@ -1,13 +1,13 @@
-#include "BackgroundInput.hpp"
+#include "LaptopBackgroundInput.hpp"
 
 using namespace components;
 
-BackgroundInput::BackgroundInput(std::string strName) : GeneralInput(strName) {
+LaptopBackgroundInput::LaptopBackgroundInput(std::string strName) : GeneralInput(strName) {
     this->bMainMenuScene = false;
-    this->bGameScene = false;
+    this->bNextDay = false;
 }
 
-void BackgroundInput::perform() {
+void LaptopBackgroundInput::perform() {
     switch(this->CEvent.type) {
         case sf::Event::KeyPressed:
             this->processKeyboardInput(this->CEvent.key.code, true);
@@ -22,13 +22,13 @@ void BackgroundInput::perform() {
     }
 }
 
-void BackgroundInput::processKeyboardInput(sf::Keyboard::Key CKey, bool bPressed) {
+void LaptopBackgroundInput::processKeyboardInput(sf::Keyboard::Key CKey, bool bPressed) {
     switch(CKey){
         case sf::Keyboard::Space:
             this->bMainMenuScene = bPressed;
             break;
-        case sf::Keyboard::Q:
-            this->bGameScene = bPressed;
+        case sf::Keyboard::C:
+            this->bNextDay = bPressed;
             break;
 
         default:
@@ -36,14 +36,14 @@ void BackgroundInput::processKeyboardInput(sf::Keyboard::Key CKey, bool bPressed
     }
 }
 
-bool BackgroundInput::getChangeScene() {
+bool LaptopBackgroundInput::getChangeScene() {
     return this->bChangeScene;
 }
 
-bool BackgroundInput::getMainMenuScene() {
+bool LaptopBackgroundInput::getMenuScene() {
     return this->bMainMenuScene;
 }
 
-bool BackgroundInput::getGameScene() {
-    return this->bGameScene;
+bool LaptopBackgroundInput::isNextDay() {
+    return this->bNextDay;
 }

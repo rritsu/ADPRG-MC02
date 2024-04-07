@@ -14,4 +14,5 @@ enum class SceneTag : int {
     ROOM7_SCENE,
     ROOM8_SCENE,
     ROOM9_SCENE,
+    LAPTOP_SCENE,
 };

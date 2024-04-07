@@ -86,5 +86,6 @@ void ShipScene::createShipObjects() {
     ShipObject* pPortal = new ShipObject("Portal", pTexture, sf::Vector2f(500.0f, 400.0f));
     pPortal->assignShade(pPortalShade);
     this->registerObject(pPortal);
+
 }
 

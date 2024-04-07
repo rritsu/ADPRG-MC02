@@ -17,6 +17,7 @@ namespace managers {
 
         public:
             void loadMainMenu();
+            void loadLaptopMenu();
             void loadShip();
             void loadArea();
             void loadScraps();

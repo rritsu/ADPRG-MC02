@@ -7,7 +7,6 @@ void AreaManager::generateArea() {
     //connection of rooms
     //doors smth smth
     //enemies
-
     std::cout << "generate rooms" << std::endl;
     RoomManager::getInstance()->generateRooms();
     int nEntryRoom = RoomManager::getInstance()->getEntryRoom();

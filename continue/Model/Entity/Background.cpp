@@ -4,8 +4,13 @@ using namespace entities;
 Background::Background(std::string strName, AnimatedTexture* pTexture) : GameObject(strName, pTexture){}
 
 void Background::initialize() {
+    this->centerOrigin();
+    this->getSprite()->setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
     BackgroundInput* pInput = new BackgroundInput(this->strName + " Input");
     this->attachComponent(pInput);
+
+    BackgroundAction* pAction = new BackgroundAction(this->strName + " Action");
+    this->attachComponent(pAction);
 
     //BackgroundAction* pAction = new BackgroundAction(this->strName + " Action");
     //this->attachComponent(pAction);

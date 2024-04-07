@@ -20,14 +20,13 @@ namespace poolables {
     class Scrap : public PoolableObject, public IPickupable,  CollisionListener {
         protected:
             ScrapTag ETag;
-            int nValue;
             bool bInRange;
             bool bPickedup;
             sf::Vector2f* vecPosition;
             int nRoomIndex;
 
         public:
-            Scrap(std::string strName, AnimatedTexture* pTexture);
+            Scrap(std::string strName, AnimatedTexture* pTexture, ScrapTag ETag);
 
         public:
             void initialize();
@@ -40,9 +39,9 @@ namespace poolables {
             PoolableObject* clone();
 
         public:
-            int getValue();
             bool IsInRange();
             ScrapTag getTag();
+            void setTag(ScrapTag ETag);
             void setRoomIndex(int nRoomIndex);
             
     };

@@ -9,6 +9,7 @@
 #include "Manager/SceneManager.hpp"
 
 #include "../Model/Scene/MainMenuScene.hpp"
+#include "../Model/Scene/LaptopScene.hpp"
 #include "../Model/Scene/ShipScene.hpp"
 #include "../Model/Scene/RoomScene.hpp"
 

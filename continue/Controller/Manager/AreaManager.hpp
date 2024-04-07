@@ -17,6 +17,7 @@ namespace managers {
         private:
             Player* pPlayerHolder;
             DoorType EDoorType;
+            bool bLoaded;
 
         public:
             void generateArea();

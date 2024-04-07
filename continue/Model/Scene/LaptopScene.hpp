@@ -4,16 +4,16 @@
 #include "../Enum/SceneTag.hpp"
 #include "../../Controller/Manager/TextureManager.hpp"
 #include "../AnimatedTexture.hpp"
-#include "../Entity/Background.hpp"
+#include "../Entity/LaptopBackground.hpp"
 
 namespace scenes {
     using namespace managers;
     using namespace entities;
     using namespace models;
 
-    class MainMenuScene : public Scene {
+    class LaptopScene : public Scene {
         public:
-            MainMenuScene();
+            LaptopScene();
 
         public:
             void onLoadResources();

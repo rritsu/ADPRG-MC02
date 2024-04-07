@@ -5,10 +5,17 @@ using namespace managers;
 void TextureManager::loadMainMenu() {
     
     sf::Texture* pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/Space Impact/main_menu_background.png");
+    pTexture->loadFromFile("View/Image/Screen/main_menu.png");
     this->mapTexture[AssetType::MAIN_MENU_BACKGROUND].push_back(pTexture);
     
+}
 
+void TextureManager::loadLaptopMenu() {
+    
+    sf::Texture* pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/Screen/laptop_menu.png");
+    this->mapTexture[AssetType::LAPTOP_BACKGROUND].push_back(pTexture);
+    
 }
 
 void TextureManager::loadShip() { 

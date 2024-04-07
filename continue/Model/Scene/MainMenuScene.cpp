@@ -8,7 +8,6 @@ void MainMenuScene::onLoadResources() {
 }
 
 void MainMenuScene::onLoadObjects() {
-  // this->createBackground();
   this->createBackground();
 }
 
@@ -24,7 +23,7 @@ void MainMenuScene::onUnloadObjects() {
 */
 
 void MainMenuScene::createBackground() {
-  // AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::MAIN_MENU_BACKGROUND));
-   Background* pBackground = new Background("Background", NULL);
+   AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::MAIN_MENU_BACKGROUND));
+   Background* pBackground = new Background("Background", pTexture);
    this->registerObject(pBackground);
 }
