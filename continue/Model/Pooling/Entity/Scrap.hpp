@@ -10,6 +10,7 @@
 #include "../../../Controller/Manager/PhysicsManager.hpp"
 #include "../../../Controller/Manager/ObjectPoolManager.hpp"
 
+
 namespace poolables {
     using namespace models;
     using namespace managers;
@@ -40,6 +41,7 @@ namespace poolables {
 
         public:
             bool IsInRange();
+            int getRoomIndex();
             ScrapTag getTag();
             void setTag(ScrapTag ETag);
             void setRoomIndex(int nRoomIndex);

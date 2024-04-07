@@ -27,6 +27,7 @@ namespace managers {
             PoolableObject* getItemAtLocation(int nTileRowIndex, int nTileColumnIndex);
             std::vector<PoolableObject*> getItemsAtLocation(int nAreaIndex);
             void setItemAtLocation(int nAreaIndex, int nTileRowIndex, int nTileColumnIndex);
+            void removeSpecifiedScrap(Scrap* pScrap);
 
         private:
             static ItemManager* P_SHARED_INSTANCE;

@@ -4,24 +4,27 @@ using namespace managers;
 
 void LevelManager::continueToNextDay(){
 
+    InventoryManager::getInstance()->sellAllScrap();
     ItemManager::getInstance()->clearMaps();
     
     if(this->nCurrentDay < 3){
-        this->nProfit += 1000000;
         this->nCurrentDay++;
         std::cout << "IT IS NOW: " << this->nCurrentDay << std::endl; 
     }
 
     else if(this->nCurrentDay >= 3){
         this->nCurrentDay = 1;
+        this->checkQuota();
         std::cout << "IT IS NOW: " << this->nCurrentDay << std::endl; 
     }
+
 }
 
 void LevelManager::continueToNextLevel(){
     this->nCompletedLevels++;
     this->nCurrentLevel += 1;
-    int nIncrease = QUOTA_MULTIPLIER * (1 + (this->nCompletedLevels * this->nCompletedLevels) / 16);
+    int nIncrease = 0;
+    nIncrease = QUOTA_MULTIPLIER * (1 + ((this->nCompletedLevels * this->nCompletedLevels) / 16));
     std::cout << "QUOTA IS ADDED BY: " << nIncrease << std::endl; 
     this->nQuota += nIncrease;
     std::cout << "QUOTA IS NOW: " << nQuota << std::endl; 
@@ -32,23 +35,29 @@ void LevelManager::resetAllLevels(){
     this->nProfit = 0;
     this->nQuota = 130;
     this->nCurrentLevel = 1;
+    InventoryManager::getInstance()->clearInventory();
+    InventoryManager::getInstance()->clearStorage();
 }
 
-bool LevelManager::checkQuota(){
+void LevelManager::checkQuota(){
     if(this->nQuota <= this->nProfit){
         
         if(this->nProfit != this->nQuota){
-            //InventoryManager::getInstance()->setPlayerCredits(this->nProfit - this->nQuota);
+            InventoryManager::getInstance()->setPlayerCredits(InventoryManager::getInstance()->getPlayerCredits() + (this->nProfit - this->nQuota));
         }
 
         this->continueToNextLevel();
     }
 
-    else
+    else{
+        std::cout << "YOU HAVE FAILED TO REACH THE QUOTA" << std::endl; 
         resetAllLevels();
+    }
 }
 
-void LevelManager::calculateProfit(){
+void LevelManager::calculateProfit(int nProfit){
+
+    this->nProfit += nProfit;
 
 }
 
@@ -60,6 +69,7 @@ LevelManager::LevelManager() {
     this->nCurrentDay = 1;
     std::cout << "IT IS NOW: " << this->nCurrentDay << std::endl; 
     this->nCurrentLevel = 1;
+    this->nCompletedLevels = 0;
 }
 
 LevelManager::LevelManager(const LevelManager&) {}

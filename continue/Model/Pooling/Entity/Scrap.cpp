@@ -113,6 +113,10 @@ ScrapTag Scrap::getTag() {
     return this->ETag;
 }
 
+int Scrap::getRoomIndex() {
+    return this->nRoomIndex;
+}
+
 bool Scrap::IsInRange(){
     return this->bInRange;
 }

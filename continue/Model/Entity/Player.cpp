@@ -83,6 +83,7 @@ void Player::onCollisionEnter(GameObject* pGameObject) {
         
 
     if(pGameObject->getName() == "Scrap")
+        this->pItem = NULL;
         this->pItem = pGameObject;
 }
 

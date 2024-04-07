@@ -69,6 +69,7 @@ std::vector<Scrap*> ItemManager::generateScrap(int nRoomIndex){
                     if(pScrap != NULL) {
                     
                         pScrap->getSprite()->setPosition(nRandomX * 100, nRandomY * 100);
+                        pScrap->setRoomIndex(nRoomIndex);
                         std::cout << "Scrap generated at " << nRandomX << std::endl;
                         std::cout << "Scrap generated is " << pScrap->getTag() << std::endl;
                         this->vecUsedLocations[nRoomIndex].push_back(pScrap->getSprite()->getPosition());
@@ -105,6 +106,7 @@ std::vector<Scrap*> ItemManager::generateScrap(int nRoomIndex){
             Scrap* pScrap = (Scrap*)pScrapPool->requestPoolable();
             pScrap->getSprite()->setPosition(this->vecUsedLocations[nRoomIndex].at(i));
             pScrap->setTag(this->vecItemTypes[nRoomIndex].at(i));
+            pScrap->setRoomIndex(nRoomIndex);
             std::cout << "Scrap generated at " << this->vecUsedLocations[nRoomIndex].at(i).x << std::endl;
             std::cout << "Scrap generated is " << this->vecItemTypes[nRoomIndex].at(i) << std::endl;
             i++;
@@ -142,6 +144,22 @@ void ItemManager::setItemAtLocation(int nAreaIndex, int nTileRowIndex, int nTile
 
 }
 
+void ItemManager::removeSpecifiedScrap(Scrap* pScrap){
+
+    for(int i = 0; i < this->vecUsedLocations[pScrap->getRoomIndex()].size(); i++) {
+        if(this->vecUsedLocations[pScrap->getRoomIndex()][i] == pScrap->getSprite()->getPosition()) {
+            this->vecUsedLocations[pScrap->getRoomIndex()].erase(this->vecUsedLocations[pScrap->getRoomIndex()].begin() + i);
+        }
+    }     
+
+    for(int i = 0; i < this->vecItemTypes[pScrap->getRoomIndex()].size(); i++) {
+        if(this->vecItemTypes[pScrap->getRoomIndex()][i] == pScrap->getTag()) {
+            this->vecItemTypes[pScrap->getRoomIndex()].erase(this->vecItemTypes[pScrap->getRoomIndex()].begin() + i);
+        }
+    }
+    
+    ObjectPoolManager::getInstance()->getPool(PoolTag::SCRAP_POOL)->releasePoolable(pScrap);      
+}
 
 ItemManager* ItemManager::P_SHARED_INSTANCE = NULL;
 

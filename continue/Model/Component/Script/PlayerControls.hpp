@@ -8,6 +8,7 @@
 #include "../../Entity/Player.hpp"
 #include "../../Pooling/Entity/Scrap.hpp"
 #include "../../../Controller/Manager/ObjectPoolManager.hpp"
+#include "../../../Controller/Manager/InventoryManager.hpp"
 #include "../../../Config/Settings.hpp"
 
 

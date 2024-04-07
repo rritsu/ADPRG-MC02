@@ -25,8 +25,8 @@ namespace managers {
             void continueToNextDay();
             void continueToNextLevel();
             void resetAllLevels();
-            bool checkQuota();
-            void calculateProfit();
+            void checkQuota();
+            void calculateProfit(int nIncrement);
 
             
 

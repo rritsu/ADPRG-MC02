@@ -6,6 +6,7 @@
 #include "../../Controller/Manager/TextureManager.hpp"
 #include "../../Controller/Pooling/GameObjectPool.hpp"
 #include "../../Controller/Manager/ObjectPoolManager.hpp"
+#include "../../Controller/Manager/InventoryManager.hpp"
 #include "../Entity/Border.hpp"
 #include "../Entity/Player.hpp"
 #include "../Entity/ShipObject.hpp"

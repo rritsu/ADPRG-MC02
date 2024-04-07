@@ -16,6 +16,7 @@ void ShipScene::onLoadObjects() {
     this->createGrid();
     this->createShipObjects();
     this->createPlayer();
+    InventoryManager::getInstance()->registerScrapToStorage();
 }
 
 void ShipScene::onUnloadResources() {

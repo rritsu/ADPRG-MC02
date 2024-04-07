@@ -48,7 +48,8 @@ void PlayerControls::perform() {
 
                 Scrap* pScrap = (Scrap*)pPlayer->getItem();
                 pScrap->onPickup(this->getOwner());
-
+                InventoryManager::getInstance()->registerScrapToInventory(pScrap);
+                pPlayerInput->resetInteract();
             }
 
         }

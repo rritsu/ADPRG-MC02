@@ -13,6 +13,7 @@
 #include "Controller/Manager/AreaManager.cpp"
 #include "Controller/Manager/PhysicsManager.cpp"
 #include "Controller/Manager/ItemManager.cpp"
+#include "Controller/Manager/InventoryManager.cpp"
 #include "Controller/Manager/LevelManager.cpp"
 #include "Controller/Utility/Utility.cpp"
 

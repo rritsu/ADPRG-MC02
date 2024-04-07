@@ -4,6 +4,8 @@
 
 #include "GameObjectManager.hpp"
 #include "ObjectPoolManager.hpp"
+#include "LevelManager.hpp"
+#include "ItemManager.hpp"
 #include "../Utility/Utility.hpp"
 #include "../../../Model/Pooling/Entity/Scrap.hpp"
 
@@ -16,20 +18,18 @@ namespace managers {
     class InventoryManager {
         private:
             std::vector<Scrap*> vecPlayerScraps;
-            //std::vector<Item*> boughtItems;
-            int nPlayerInventorySize;
+            std::vector<Scrap*> vecStorage;
+            int nPlayerCredits;
 
         public:
-
-
-        public:
-            void initializeScrapPool(int nLevelIndex);
-            void clearScrapPool();
-            std::vector<Scrap*> generateScrap();
-            PoolableObject* getItemAtLocation(int nTileRowIndex, int nTileColumnIndex);
-            std::vector<PoolableObject*> getItemsAtLocation(int nAreaIndex);
-            void setItemAtLocation(int nAreaIndex, int nTileRowIndex, int nTileColumnIndex);
-
+            void registerScrapToInventory(Scrap* pScrap);
+            void clearInventory();
+            void registerScrapToStorage();
+            void clearStorage();
+            void sellAllScrap();
+            int getPlayerCredits();
+            void setPlayerCredits(int nAmount);
+            
         private:
             static InventoryManager* P_SHARED_INSTANCE;
         
